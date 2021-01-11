@@ -12,6 +12,7 @@ import Email from "../../Images/email.png";
 import cover from '../../Images/front_cover.png'
 
 import WellnessCard from "../CustomUIComponents/WellnessCard/WellnessCard";
+import {SUBJECTS} from "../../Entities/AppRoutes";
 
 type HomeState = { latestSubject: Subject }
 type HomeProps = { history: any }
@@ -64,7 +65,7 @@ class Home extends React.Component<HomeProps, HomeState> {
 
     openSubject(e: any) {
         const appHistory = this.props.history
-        appHistory.push("/wellnesslab_web/dev/subjects/"+this.state.latestSubject.id)
+        appHistory.push(SUBJECTS+"/"+this.state.latestSubject.id)
     }
 
     clickedLink(url: string) {
@@ -104,7 +105,7 @@ class Home extends React.Component<HomeProps, HomeState> {
 
     styles = {
         container: {display: 'flex', flexGrow: 1, width: '100%', flexDirection: 'row' as 'row', backgroundColor: '#F7F7F7', background: `url(${cover})`, backgroundSize: 'cover'},
-        topText: {fontFamily: 'Roboto', fontWeight: 100, textAlign: 'center' as 'center', fontSize: 35},
+        topText: {fontWeight: 100, textAlign: 'center' as 'center', fontSize: 35},
         leftSide: {display: 'flex', width: '70%', flexDirection: 'column' as 'column'},
         rightSide: {display: 'flex', width: '30%', flexDirection: 'column' as 'column', justifyContent: 'center' as 'center', alignItems: 'center' as 'center'},
         itemCardContainer: {padding: '10px'},

@@ -20,6 +20,7 @@ import {Article, SocialMedia, TeamMember} from "../../Entities/Entities";
 import {TopAppBar, TopAppBarRow, TopAppBarSection, TopAppBarTitle} from "rmwc";
 import {wellnessLabPrimary} from "../../Entities/Colors";
 import logoWhite from "../../Images/logo_white.png";
+import {HOME} from "../../Entities/AppRoutes";
 
 type WLToolbarProps = {
     history: any
@@ -320,7 +321,7 @@ class UIv1 extends React.Component<WLToolbarProps, WLToolabrState> {
                             </div>
 
                             <div style={this.styles.bottomBar} onClick={() => {
-                                this.props.history.push("/wellnesslab_web/dev/")
+                                this.props.history.push(HOME)
                             }}></div>
 
                         </div>
@@ -337,12 +338,12 @@ class UIv1 extends React.Component<WLToolbarProps, WLToolabrState> {
         toolbar: {color: 'white', backgroundColor: 'rgb(99, 148, 140)', height: 60},
         toolbarLogo: {height: '100%'},
         introContainer: {paddingLeft: '15%', paddingRight: '15%', paddingTop: '100px', paddingBottom: '100px'},
-        introText: {fontFamily: 'Roboto', fontWeight: 100, fontSize: 56},
+        introText: {fontWeight: 100, fontSize: 56},
         articlesContainer: {backgroundColor: 'rgb(247,247,247)', paddingTop: '30px', paddingBottom: '30px'},
-        sectionHeader: {marginLeft: '30px', color: 'rgb(99, 148, 140)', fontFamily: 'Roboto', fontWeight: 400, fontSize: 45},
+        sectionHeader: {marginLeft: '30px', color: 'rgb(99, 148, 140)', fontWeight: 400, fontSize: 45},
         articlesDiv: {width: '75%', flexDirection: "row" as 'row', display: 'flex', flexWrap: 'wrap' as "wrap", marginLeft: 'auto', marginRight: 'auto'},
         healthExperiencesContainer: {paddingTop: '30px', paddingBottom: '30px'},
-        healthExperiencesText: {marginLeft: '30px', marginRight: '30px', fontFamily: 'Roboto', fontWeight: 400, fontSize: 24},
+        healthExperiencesText: {marginLeft: '30px', marginRight: '30px', fontWeight: 400, fontSize: 24},
         parallaxImage: {height: '500px', width: '100vw', objectFit: 'cover' as 'cover'},
         socialMediaContainer: {paddingTop: '30px', paddingBottom: '30px'},
         socialMediaDiv: {width: '75%', flexDirection: 'row' as 'row', display: 'flex', flexWrap: 'wrap' as 'wrap', marginLeft: 'auto', marginRight: 'auto'},
@@ -361,9 +362,9 @@ class UIv1 extends React.Component<WLToolbarProps, WLToolabrState> {
         teamMemberSocialIcon: {width: '30px', height: '30px', padding: 15, color:'rgb(99, 148, 140)'},
         teamMemberSocialsContainer: {display: 'flex', flexDirection: 'row' as 'row'},
         teamMemberImg: {width: '120px', height: '120px', marginTop: '20px'},
-        teamMemberTextContainer: {fontFamily: 'Roboto', fontSize: '22px', lineHeight: '25px', fontWeight: 500, color: 'rgb(99, 148, 140)', padding: '20px'},
-        teamMemberName: {fontFamily: 'Roboto', fontSize: '20px', lineHeight: '25px', fontWeight: 500, color: 'rgb(99, 148, 140)'},
-        teamMemberTitle: {fontFamily: 'Roboto', fontSize: '16px', lineHeight: '16px', fontWeight: 500, color: 'rgb(255,63,128)', marginTop: '10px'},
+        teamMemberTextContainer: {fontSize: '22px', lineHeight: '25px', fontWeight: 500, color: 'rgb(99, 148, 140)', padding: '20px'},
+        teamMemberName: { fontSize: '20px', lineHeight: '25px', fontWeight: 500, color: 'rgb(99, 148, 140)'},
+        teamMemberTitle: { fontSize: '16px', lineHeight: '16px', fontWeight: 500, color: 'rgb(255,63,128)', marginTop: '10px'},
         logo: {width: 40, height: 40, marginRight: 20 },
     }
 

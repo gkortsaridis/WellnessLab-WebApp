@@ -13,6 +13,7 @@ const trans = (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg)
 
 export default function WellnessTeamCard(props) {
 
+    const shouldMove = false
     const width = 300
     const height = 400
 
@@ -44,36 +45,40 @@ export default function WellnessTeamCard(props) {
     }
 
     function calc(x,y) {
-        const a = (cardFront.current).getBoundingClientRect()
-        const offsetTop = a.top
-        const offsetLeft = a.left
-        //console.log(x,y, offsetTop, offsetLeft)
+        if(shouldMove) {
+            const a = (cardFront.current).getBoundingClientRect()
+            const offsetTop = a.top
+            const offsetLeft = a.left
+            //console.log(x,y, offsetTop, offsetLeft)
 
-        //Calculating Y percentage [-10,10]
-        var percentageInsideY = offsetTop+height-y
-        if(percentageInsideY < 0) { percentageInsideY = 0 }
-        else if(percentageInsideY > height) { percentageInsideY = height }
+            //Calculating Y percentage [-10,10]
+            var percentageInsideY = offsetTop+height-y
+            if(percentageInsideY < 0) { percentageInsideY = 0 }
+            else if(percentageInsideY > height) { percentageInsideY = height }
 
-        let old_value = percentageInsideY
-        let old_min = 0
-        let old_max = height
-        let new_min = -10
-        let new_max = 10
-        let new_valueY = ( (old_value - old_min) / (old_max - old_min) ) * (new_max - new_min) + new_min
+            let old_value = percentageInsideY
+            let old_min = 0
+            let old_max = height
+            let new_min = -10
+            let new_max = 10
+            let new_valueY = ( (old_value - old_min) / (old_max - old_min) ) * (new_max - new_min) + new_min
 
-        //Calculating X percentage [-10,10]
-        let percentageInsideX = offsetLeft+width-x
-        if(percentageInsideX < 0) { percentageInsideX = 0 }
-        else if(percentageInsideX > width) { percentageInsideX = width }
+            //Calculating X percentage [-10,10]
+            let percentageInsideX = offsetLeft+width-x
+            if(percentageInsideX < 0) { percentageInsideX = 0 }
+            else if(percentageInsideX > width) { percentageInsideX = width }
 
-        old_value = percentageInsideX
-        old_min = 0
-        old_max = width
-        new_min = -10
-        new_max = 10
-        let new_valueX = ( (old_value - old_min) / (old_max - old_min) ) * (new_max - new_min) + new_min
+            old_value = percentageInsideX
+            old_min = 0
+            old_max = width
+            new_min = -10
+            new_max = 10
+            let new_valueX = ( (old_value - old_min) / (old_max - old_min) ) * (new_max - new_min) + new_min
 
-        return [-new_valueY, new_valueX, 1]
+            return [-new_valueY, new_valueX, 1]
+        } else {
+            return [0,0,1]
+        }
     }
 
     function openLink(url) {

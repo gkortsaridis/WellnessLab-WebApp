@@ -3,6 +3,7 @@ import WellnessCard from "../CustomUIComponents/WellnessCard/WellnessCard";
 
 import {getAllSubjects} from "../../Repositories/SubjectsRepository";
 import {Subject} from "../../Entities/Entities";
+import {SUBJECTS} from "../../Entities/AppRoutes";
 
 type OurSubjectsState = { subjects: Subject[] }
 type OurSubjectProps = { history: any }
@@ -25,7 +26,7 @@ class Subjects extends React.Component<OurSubjectProps, OurSubjectsState> {
 
     private clickedLink(link: string) {
         const appHistory = this.props.history
-        appHistory.push("/wellnesslab_web/dev/subjects/"+link)
+        appHistory.push(SUBJECTS+"/"+link)
     }
 
     render() {
@@ -58,7 +59,7 @@ class Subjects extends React.Component<OurSubjectProps, OurSubjectsState> {
 
     styles = {
         container: {flex: 1, backgroundColor: '#F7F7F7'},
-        introText: {fontFamily: 'Roboto', fontWeight: 100, padding: 20},
+        introText: {fontWeight: 100, padding: 20},
         articlesContainer: {width: '75%', flexDirection: 'row' as 'row', display: 'flex', flexWrap: 'wrap' as 'wrap', marginLeft: 'auto', marginRight: 'auto'},
         itemCardContainer: {flexGrow: 1, padding: '10px', display: 'flex', flexDirection: 'column' as 'column', justifyContent: 'center' as 'center', alignItems: 'center' as 'center'},
         articleCard: { width: '300px', height: '500px',display: "flex", flexDirection: 'column' as 'column', backgroundColor: 'white' },

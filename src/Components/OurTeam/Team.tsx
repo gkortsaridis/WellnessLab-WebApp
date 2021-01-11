@@ -117,10 +117,19 @@ class Team extends React.Component<{ }, {}> {
     }
 
     render() {
-        const teamItems: JSX.Element[] = []
+        const teamLeaders: JSX.Element[] = []
+        const team: JSX.Element[] = []
 
-        for (let i=0; i<this.team.length; i++) {
-            teamItems.push(
+        for (let i=0; i<2; i++) {
+            teamLeaders.push(
+                <div style={this.styles.itemCardContainer}>
+                    <WellnessTeamCard person={this.team[i]}/>
+                </div>
+            )
+        }
+
+        for (let i=2; i<this.team.length; i++) {
+            team.push(
                 <div style={this.styles.itemCardContainer}>
                     <WellnessTeamCard person={this.team[i]}/>
                 </div>
@@ -130,7 +139,8 @@ class Team extends React.Component<{ }, {}> {
         return (
             <div style={this.styles.container}>
                 <h3 style={this.styles.introText}>Αυτό είναι ένα σύντομο κείμενο που θα περιγραφει την ομάδα </h3>
-                <div style={this.styles.cardsContainer}> {teamItems} </div>
+                <div style={this.styles.cardsContainer}> {teamLeaders} </div>
+                <div style={this.styles.cardsContainer}> {team} </div>
             </div>
         )
     }
@@ -148,15 +158,15 @@ class Team extends React.Component<{ }, {}> {
             marginLeft: 'auto',
             marginRight: 'auto'
         },
-        introText: {fontFamily: 'Roboto', fontWeight: 100, padding: 20},
+        introText: {fontWeight: 100, padding: 20},
         itemCardContainer: {flexGrow: 1, padding: '10px', display: 'flex', flexDirection: 'column' as 'column', justifyContent: 'center' as 'center', alignItems: 'center' as 'center'},
         teamMemberCard: {width: '250px',height: '270px', display: 'flex', flexDirection: 'column' as 'column', backgroundColor: 'white', alignItems: 'center' as 'center'},
         teamMemberSocialIcon: {width: '30px', height: '30px', padding: 15, color:'rgb(99, 148, 140)'},
         teamMemberSocialsContainer: {display: 'flex', flexDirection: 'row' as 'row'},
         teamMemberImg: {width: '120px', height: '120px', marginTop: '20px'},
-        teamMemberTextContainer: {fontFamily: 'Roboto', fontSize: '22px', lineHeight: '25px', fontWeight: 500, color: 'rgb(99, 148, 140)', padding: '30px'},
-        teamMemberName: {fontFamily: 'Roboto', fontSize: '20px', lineHeight: '25px', fontWeight: 500, color: 'rgb(99, 148, 140)', whiteSpace: 'pre-line' as 'pre-line',},
-        teamMemberTitle: {fontFamily: 'Roboto', fontSize: '16px', lineHeight: '16px', fontWeight: 500, color: 'rgb(255,63,128)', marginTop: '10px'}
+        teamMemberTextContainer: { fontSize: '22px', lineHeight: '25px', fontWeight: 500, color: 'rgb(99, 148, 140)', padding: '30px'},
+        teamMemberName: { fontSize: '20px', lineHeight: '25px', fontWeight: 500, color: 'rgb(99, 148, 140)', whiteSpace: 'pre-line' as 'pre-line',},
+        teamMemberTitle: { fontSize: '16px', lineHeight: '16px', fontWeight: 500, color: 'rgb(255,63,128)', marginTop: '10px'}
     }
 }
 
