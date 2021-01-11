@@ -14,7 +14,9 @@ import UIv1 from "./UIv1/UIv1";
 import AdminPanel from "./Admin/AdminPanel";
 import { createBrowserHistory } from 'history'
 import SubjectDetails from "./OurSubjects/SubjectDetails";
-import {ACTIONS, ADMIN, HOME, SUBJECT_DETAILS, SUBJECTS, TEAM, VIDEOS} from "../Entities/AppRoutes";
+import {ACTIONS, ADMIN, ADMIN_SUBJECT_EDIT, HOME, SUBJECT_DETAILS, SUBJECTS, TEAM, VIDEOS} from "../Entities/AppRoutes";
+import AdminPanelSubjectsList from "./Admin/AdminPanelSubjectsList";
+import AdminPanelSubjectEditing from "./Admin/AdminPanelSubjectEditing";
 
 type WellnessLabAppState = { renderFlag: boolean }
 
@@ -96,7 +98,11 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
                     </Route>
 
                     <Route exact path={ADMIN}>
-                        <AdminPanel/>
+                        <AdminPanelSubjectsList history={this.appHistory}/>
+                    </Route>
+
+                    <Route exact path={ADMIN_SUBJECT_EDIT}>
+                        <AdminPanelSubjectEditing history={this.appHistory}/>
                     </Route>
 
                     <Route path="*">

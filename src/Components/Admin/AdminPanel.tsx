@@ -16,7 +16,7 @@ import {ChangeEvent} from "react";
 type AdminPanelState = {
     subjects: Subject[],
     activeSubject: Subject,
-    images: {},
+    images: string[],
     deleteAlertOpen: boolean
 }
 
@@ -25,7 +25,7 @@ class AdminPanel extends React.Component<{}, AdminPanelState> {
     constructor(props: {}, state: AdminPanelState) {
         super(props, state);
 
-        this.state = {subjects: [], activeSubject: emptySubject, images: {}, deleteAlertOpen: false}
+        this.state = {subjects: [], activeSubject: emptySubject, images: [], deleteAlertOpen: false}
 
         this.onRowClicked = this.onRowClicked.bind(this)
         this.createUpdateSubject = this.createUpdateSubject.bind(this)
@@ -40,13 +40,13 @@ class AdminPanel extends React.Component<{}, AdminPanelState> {
             this.setState({
                 subjects: subjects,
                 activeSubject: subjects.length > 0 ? subjects[0] : emptySubject,
-                images: subjects.length > 0 ? subjects[0].tips : {}
+                images: subjects.length > 0 ? subjects[0].tips : []
             })
         });
     }
 
     private createNewSubject() {
-        this.setState({activeSubject: emptySubject, images: {}})
+        this.setState({activeSubject: emptySubject, images: []})
     }
 
     private showDeleteSubjectDialog() {
@@ -69,12 +69,10 @@ class AdminPanel extends React.Component<{}, AdminPanelState> {
     }
 
     private createUpdateSubject() {
-        console.log(this.state.activeSubject.suggestions)
-
         const tipsArr: string[] = []
-        Object.keys(this.state.images).map((innerAttr: string) => {
-            tipsArr.push(innerAttr)
-            return 0
+        Object.keys(this.state.images).map((value: string, index: number) => {
+            tipsArr.push(this.state.images[index])
+            return ""
         })
 
         const updateArticle: Article = {
@@ -141,7 +139,8 @@ class AdminPanel extends React.Component<{}, AdminPanelState> {
                     <div style={this.styles.dataUI}>
                         <div style={this.styles.subjectsTable}>
                             <List onAction={(evt) => this.onRowClicked((evt.target as any).index)} style={this.styles.subjectsTable}>
-                                { this.state.subjects.map((subject: Subject) => { return <ListItem style={this.state.activeSubject.id === subject.id ? this.styles.selectedSubject : this.styles.notSelectedSubject} key={1}>{subject.title}</ListItem> }) }
+                                { this.state.subjects.map((subject: Subject) => {
+                                    return <ListItem style={this.state.activeSubject.id === subject.id ? this.styles.selectedSubject : this.styles.notSelectedSubject} key={1}>{subject.title}</ListItem> }) }
                             </List>
                         </div>
 
@@ -282,7 +281,7 @@ class AdminPanel extends React.Component<{}, AdminPanelState> {
         },
         subjectsTable: {
             display: 'flex',
-            width: '30vw',
+            width: '20vw',
             flexDirection: 'column' as 'column',
             backgroundColor: '#CBF5F4'
         },
