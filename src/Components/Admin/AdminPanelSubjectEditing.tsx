@@ -8,11 +8,9 @@ import {
 } from "../../Repositories/SubjectsRepository";
 import {Article, Subject} from "../../Entities/Entities";
 import TextField from "@material-ui/core/TextField";
-import {ChangeEvent} from "react";
 import {
     Button,
     TopAppBar,
-    TopAppBarActionItem,
     TopAppBarFixedAdjust,
     TopAppBarRow,
     TopAppBarSection,
@@ -22,8 +20,6 @@ import {
 import MultiImageInput from "react-multiple-image-input";
 import {wellnessLabPrimary} from "../../Entities/Colors";
 import logoWhite from "../../Images/logo_white.png";
-import WLToolbarItem from "../WLToolbar/WLToolbarItem";
-import {ACTIONS, HOME, SUBJECTS, TEAM} from "../../Entities/AppRoutes";
 
 type SubjectDetailsProps = {
     history: any

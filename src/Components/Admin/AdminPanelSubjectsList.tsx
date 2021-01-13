@@ -5,6 +5,8 @@ import {getAllSubjects} from "../../Repositories/SubjectsRepository";
 import {Subject} from "../../Entities/Entities";
 import {ADMIN, ADMIN_SUBJECT_EDIT, SUBJECTS} from "../../Entities/AppRoutes";
 
+import plus from '../../Images/plus.png'
+
 type OurSubjectsState = { subjects: Subject[] }
 type OurSubjectProps = { history: any }
 
@@ -36,9 +38,9 @@ class AdminPanelSubjectsList extends React.Component<OurSubjectProps, OurSubject
             <div style={this.styles.itemCardContainer} onClick={(e) => {this.clickedLink("-1")}}>
                 <WellnessCard width={300} height={500} borderRadius={this.cardRadius}>
                     <div style={this.styles.articleCard}>
-                        <div style={Object.assign({}, this.styles.articleImage)}></div>
+                        <div style={Object.assign({background: 'url('+plus+') center/ contain', margin: 40}, this.styles.articleImage)}></div>
                         <div style={this.styles.articleTitleContainer}>
-                            <p style={this.styles.articleTitleText}>Νέο Θέμα</p>
+                            <p style={this.styles.articleTitleText}>Δημιουργία Νέου Θέματος</p>
                         </div>
                     </div>
                 </WellnessCard>
@@ -78,7 +80,7 @@ class AdminPanelSubjectsList extends React.Component<OurSubjectProps, OurSubject
         articlesContainer: {width: '75%', flexDirection: 'row' as 'row', display: 'flex', flexWrap: 'wrap' as 'wrap', marginLeft: 'auto', marginRight: 'auto'},
         itemCardContainer: {flexGrow: 1, padding: '10px', display: 'flex', flexDirection: 'column' as 'column', justifyContent: 'center' as 'center', alignItems: 'center' as 'center'},
         articleCard: { width: '300px', height: '500px',display: "flex", flexDirection: 'column' as 'column', backgroundColor: 'white' },
-        articleImage: {width: '300px', height: '400px', overflow: 'hidden', borderRadius: this.cardRadius},
+        articleImage: {height: '400px', overflow: 'hidden', borderRadius: this.cardRadius},
         articleTitleContainer: {width: '300px', height: '100px', backgroundColor: 'white', display: 'table', textAlign: 'center' as 'center', borderRadius: this.cardRadius},
         articleTitleText: {textDecoration: 'none', color: 'black', textAlign: 'center' as 'center', fontSize: '20px', display: 'table-cell', verticalAlign: 'middle', padding: '5px'},
     }

@@ -6,4 +6,6 @@ export const VIDEOS = "/dev/videos"
 export const TEAM = "/dev/team"
 
 export const ADMIN = "/adminpanel"
+export const ADMIN_SUGGESTIONS = "/adminpanel/suggestion_types"
+export const ADMIN_SUBJECTS = "/adminpanel/subjects"
 export const ADMIN_SUBJECT_EDIT = "/adminpanel/subjects/:subjectID"
