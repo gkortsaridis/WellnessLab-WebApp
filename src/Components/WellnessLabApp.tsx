@@ -17,8 +17,8 @@ import SubjectDetails from "./OurSubjects/SubjectDetails";
 import {
     ACTIONS,
     ADMIN,
-    ADMIN_SUBJECT_EDIT,
-    ADMIN_SUBJECTS, ADMIN_SUGGESTIONS,
+    ADMIN_SUBJECT_EDIT, ADMIN_SUBJECT_EDIT_SUGGESTIONS,
+    ADMIN_SUBJECTS, ADMIN_SUGGESTION, ADMIN_SUGGESTIONS,
     HOME,
     SUBJECT_DETAILS,
     SUBJECTS,
@@ -27,7 +27,9 @@ import {
 } from "../Entities/AppRoutes";
 import AdminPanelSubjectsList from "./Admin/AdminPanelSubjectsList";
 import AdminPanelSubjectEditing from "./Admin/AdminPanelSubjectEditing";
-import AdminPanelSuggestionTypes from "./Admin/AdminPanelSuggestionTypes";
+import AdminPanelSuggestionTypes from "./Admin/Suggestions/SuggestionTypes/AdminPanelSuggestionTypes";
+import AdminPanelSuggestionType from "./Admin/Suggestions/SuggestionTypes/AdminPanelSuggestionType";
+import AdminPanelSubjectEditingSuggestions from "./Admin/Suggestions/AdminPanelSubjectEditingSuggestions";
 
 type WellnessLabAppState = { renderFlag: boolean }
 
@@ -117,12 +119,20 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
                     </Route>
 
                     <Route exact path={ADMIN_SUGGESTIONS}>
-                        <AdminPanelSuggestionTypes/>
+                        <AdminPanelSuggestionTypes history={this.appHistory}/>
+                    </Route>
+
+                    <Route exact path={ADMIN_SUGGESTION}>
+                        <AdminPanelSuggestionType history={this.appHistory}/>
                     </Route>
 
 
                     <Route exact path={ADMIN_SUBJECT_EDIT}>
                         <AdminPanelSubjectEditing history={this.appHistory}/>
+                    </Route>
+
+                    <Route exact path={ADMIN_SUBJECT_EDIT_SUGGESTIONS}>
+                        <AdminPanelSubjectEditingSuggestions history={this.appHistory}/>
                     </Route>
 
                     <Route path="*">

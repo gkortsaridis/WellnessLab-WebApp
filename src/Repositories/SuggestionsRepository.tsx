@@ -1,10 +1,11 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore'; // If using Firebase database
 
-import {SuggestionType} from "../Entities/Entities";
+import {Subject, SubjectSuggestion, SuggestionParent, SuggestionType} from "../Entities/Entities";
 
 export const emptySuggestionType: SuggestionType = {name: "UNKNOWN_TYPE", img: "", id: ""}
-
+export const emptySuggestionParent: SuggestionParent = {suggestionType: emptySuggestionType, suggestionsText: []}
+export const emptySubjectSuggestion: SubjectSuggestion = {mainText: "", suggestions: []}
 
 export function getAllSuggestionTypes() {
 
@@ -30,5 +31,57 @@ export function getAllSuggestionTypes() {
                 }
             }
         })
+    })
+}
+
+export function getSuggestionTypeByID(suggestionTypeID: string) {
+
+    return new Promise<SuggestionType>((resolve, reject) => {
+        firebase.firestore().collection('suggestion_types').doc(suggestionTypeID).get().then((snapshot: firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData>) => {
+            const doc = snapshot.data() as any
+            let suggestionObj: SuggestionType = JSON.parse(JSON.stringify(emptySuggestionType))
+
+            const name = doc.name
+            const img = doc.img
+
+            suggestionObj.name = name
+            suggestionObj.img = img
+            suggestionObj.id = snapshot.id
+
+            resolve(suggestionObj)
+        })
+    })
+}
+
+export function updateSuggestionType(suggestionType: SuggestionType) {
+
+    return new Promise<any>((resolve, reject) => {
+        firebase.firestore().collection('suggestion_types').doc(suggestionType.id).set({
+            name: suggestionType.name,
+            img: suggestionType.img
+        })
+            .then((result) => resolve(result))
+            .catch((error) => reject(error))
+
+    })
+}
+
+export function createSuggestionType(suggestionType: SuggestionType) {
+
+    return new Promise<any>((resolve, reject) => {
+        firebase.firestore().collection('suggestion_types').add({
+            name: suggestionType.name,
+            img: suggestionType.img
+        })
+            .then((result) => resolve(result))
+            .catch((error) => reject(error))
+    })
+}
+
+export function deleteSuggestionType(suggestionTypeID: string) {
+    return new Promise<any>((resolve, reject) => {
+        firebase.firestore().collection('suggestion_types').doc(suggestionTypeID).delete()
+            .then((result) => resolve(result))
+            .catch((error) => reject(error))
     })
 }

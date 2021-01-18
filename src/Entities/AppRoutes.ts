@@ -7,5 +7,7 @@ export const TEAM = "/dev/team"
 
 export const ADMIN = "/adminpanel"
 export const ADMIN_SUGGESTIONS = "/adminpanel/suggestion_types"
+export const ADMIN_SUGGESTION = "/adminpanel/suggestion_types/:suggestionTypeID"
 export const ADMIN_SUBJECTS = "/adminpanel/subjects"
 export const ADMIN_SUBJECT_EDIT = "/adminpanel/subjects/:subjectID"
+export const ADMIN_SUBJECT_EDIT_SUGGESTIONS = "/adminpanel/subjects/:subjectID/suggestions"

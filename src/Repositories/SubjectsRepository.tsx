@@ -1,11 +1,11 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore'; // If using Firebase database
 
-import {Article, Subject} from "../Entities/Entities";
+import {Article, Subject, SubjectSuggestion} from "../Entities/Entities";
+import {emptySubjectSuggestion} from "./SuggestionsRepository";
 
 export const emptyArticle: Article = {title: "", imgUrl: "", articleUrl: ""}
-export const emptySubject: Subject = {id: "", title: "", imgUrl: "", article: emptyArticle, suggestions: "", tips: [], createdDate: Date.now(), modifiedDate: Date.now() }
-
+export const emptySubject: Subject = {id: "", title: "", imgUrl: "", article: emptyArticle, suggestions: JSON.parse(JSON.stringify(emptySubjectSuggestion)), tips: [], createdDate: Date.now(), modifiedDate: Date.now() }
 
  export function getAllSubjects() {
 
@@ -131,4 +131,33 @@ export const emptySubject: Subject = {id: "", title: "", imgUrl: "", article: em
              })
              .catch((error) => reject(error))
      })
+ }
+
+ export function updateSubjectSuggestion(subjectID: string, subjectSuggestion: SubjectSuggestion) {
+
+     return new Promise<any>((resolve, reject) => {
+         getSubjectById(subjectID)
+             .then((subject: Subject) => {
+                 firebase.firestore().collection('subjects').doc(subjectID).set({
+                     tips: subject.tips,
+                     title: subject.title,
+                     imgUrl: subject.imgUrl,
+                     createdDate: subject.createdDate,
+                     modifiedDate: subject.modifiedDate,
+                     article: {
+                         title: subject.article.title,
+                         imgUrl: subject.article.imgUrl,
+                         articleUrl: subject.article.articleUrl
+                     },
+                     suggestions: subjectSuggestion,
+                 })
+                     .then((result) => resolve(result))
+                     .catch((error) => reject(error))
+             })
+             .catch((error) => {
+
+             })
+     })
+
+
  }

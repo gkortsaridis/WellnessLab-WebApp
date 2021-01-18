@@ -13,6 +13,7 @@ import cover from '../../Images/front_cover.png'
 
 import WellnessCard from "../CustomUIComponents/WellnessCard/WellnessCard";
 import {SUBJECTS} from "../../Entities/AppRoutes";
+import {wellnessLabLightBackground} from "../../Entities/Colors";
 
 type HomeState = { latestSubject: Subject }
 type HomeProps = { history: any }
@@ -104,7 +105,7 @@ class Home extends React.Component<HomeProps, HomeState> {
     cardRadius = 15
 
     styles = {
-        container: {display: 'flex', flexGrow: 1, width: '100%', flexDirection: 'row' as 'row', backgroundColor: '#F7F7F7', background: `url(${cover})`, backgroundSize: 'cover'},
+        container: {display: 'flex', flexGrow: 1, width: '100%', flexDirection: 'row' as 'row', backgroundColor: wellnessLabLightBackground, background: `url(${cover})`, backgroundSize: 'cover'},
         topText: {fontWeight: 100, textAlign: 'center' as 'center', fontSize: 35},
         leftSide: {display: 'flex', width: '70%', flexDirection: 'column' as 'column'},
         rightSide: {display: 'flex', width: '30%', flexDirection: 'column' as 'column', justifyContent: 'center' as 'center', alignItems: 'center' as 'center'},

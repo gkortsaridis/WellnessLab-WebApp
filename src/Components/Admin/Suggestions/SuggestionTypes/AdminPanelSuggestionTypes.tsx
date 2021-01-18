@@ -1,19 +1,24 @@
 import * as React from 'react';
-import {SuggestionType} from "../../Entities/Entities";
-import {getAllSuggestionTypes} from "../../Repositories/SuggestionsRepository";
-import WellnessCard from "../CustomUIComponents/WellnessCard/WellnessCard";
+import {SuggestionType} from "../../../../Entities/Entities";
+import {getAllSuggestionTypes} from "../../../../Repositories/SuggestionsRepository";
+import WellnessCard from "../../../CustomUIComponents/WellnessCard/WellnessCard";
 
-import plus from '../../Images/plus.png'
+import plus from '../../../../Images/plus.png'
 import TextField from "@material-ui/core/TextField";
 import {Button} from "rmwc";
+import {ADMIN_SUGGESTION, ADMIN_SUGGESTIONS, SUBJECTS} from "../../../../Entities/AppRoutes";
+
+type AdminPanelSuggestionTypesProps = {
+    history: any
+}
 
 type AdminPanelSuggestionTypesState = {
     suggestionTypes: SuggestionType[]
 }
 
-class AdminPanelSuggestionTypes extends React.Component<{ }, AdminPanelSuggestionTypesState> {
+class AdminPanelSuggestionTypes extends React.Component<AdminPanelSuggestionTypesProps, AdminPanelSuggestionTypesState> {
 
-    constructor(props: {}, state: AdminPanelSuggestionTypesState) {
+    constructor(props: AdminPanelSuggestionTypesProps, state: AdminPanelSuggestionTypesState) {
         super(props, state);
 
         this.state = {suggestionTypes: []}
@@ -29,14 +34,19 @@ class AdminPanelSuggestionTypes extends React.Component<{ }, AdminPanelSuggestio
             })
     }
 
+    onCardClick(id: string) {
+        const appHistory = this.props.history
+        appHistory.push(ADMIN_SUGGESTIONS+"/"+id)
+    }
+
     render() {
         const suggestionTypeItems: JSX.Element[]= [];
 
         suggestionTypeItems.push(
             <div style={this.styles.itemCardContainer}>
-                <WellnessCard width={200} height={200} borderRadius={15}>
+                <WellnessCard width={200} height={200} borderRadius={15} onCardClick={() => {this.onCardClick("-1")}}>
                     <div style={this.styles.articleCard}>
-                        <div style={Object.assign({background: 'url('+plus+') center / contain'}, this.styles.articleImage)}></div>
+                        <div style={Object.assign({background: 'url('+plus+') center / contain'}, this.styles.articleImage)} ></div>
                         <div style={this.styles.articleTitleContainer}>
                             <p style={this.styles.articleTitleText}>{"Δημιουργία νέου Suggestion type"}</p>
                         </div>
@@ -48,21 +58,11 @@ class AdminPanelSuggestionTypes extends React.Component<{ }, AdminPanelSuggestio
         for (let i=0; i<this.state.suggestionTypes.length; i++) {
             suggestionTypeItems.push(
                 <div style={this.styles.itemCardContainer}>
-                    <WellnessCard width={200} height={200} borderRadius={15}>
+                    <WellnessCard width={200} height={200} borderRadius={15} onCardClick={() => {this.onCardClick(this.state.suggestionTypes[i].id)}}>
                         <div style={this.styles.articleCard}>
                             <div style={Object.assign({background: 'url('+this.state.suggestionTypes[i].img+') center / contain'}, this.styles.articleImage)}></div>
                             <div style={this.styles.articleTitleContainer}>
-                                <TextField
-                                    variant="outlined"
-                                    label={'Όνομα'}
-                                    value={this.state.suggestionTypes[i].name}
-                                    onChange={(e) => {
-                                        const suggestionTypes = this.state.suggestionTypes
-                                        const suggestionType = suggestionTypes[i]
-                                        suggestionType.name = e.target.value
-                                        suggestionTypes[i] = suggestionType
-                                        this.setState({suggestionTypes: suggestionTypes})
-                                    }}/>
+                                {this.state.suggestionTypes[i].name}
                             </div>
                         </div>
                     </WellnessCard>
@@ -74,7 +74,6 @@ class AdminPanelSuggestionTypes extends React.Component<{ }, AdminPanelSuggestio
             <div style={this.styles.app}>
                 <div style={this.styles.container}>
                     <div style={this.styles.toolbar}>
-                        <Button label={"Αποθήκευση"}/>
                     </div>
 
                     <div style={this.styles.dataUI}>
@@ -94,7 +93,7 @@ class AdminPanelSuggestionTypes extends React.Component<{ }, AdminPanelSuggestio
         itemCardContainer: {flexGrow: 1, padding: '10px', display: 'flex', flexDirection: 'column' as 'column', justifyContent: 'center' as 'center', alignItems: 'center' as 'center'},
         articleCard: { width: '200px', height: '200px',display: "flex", flexDirection: 'column' as 'column', backgroundColor: 'white' },
         articleImage: {margin: 25, height: '80px', overflow: 'hidden', borderRadius: 15, backgroundRepeat: 'no-repeat'},
-        articleTitleContainer: {width: '200px', height: '100px', backgroundColor: 'white', display: 'flex', flexDirection: 'column' as 'column'},
+        articleTitleContainer: {width: '200px', height: '100px', backgroundColor: 'white', display: 'flex', flexDirection: 'column' as 'column', justifyContent: 'center' as 'center', alignItems: 'center' as 'center'},
         articleTitleText: {textDecoration: 'none', color: 'black', textAlign: 'center' as 'center', fontSize: '20px', display: 'table-cell', verticalAlign: 'middle', padding: '5px'},
     }
 }

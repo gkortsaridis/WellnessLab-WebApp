@@ -20,6 +20,7 @@ import {
 import MultiImageInput from "react-multiple-image-input";
 import {wellnessLabPrimary} from "../../Entities/Colors";
 import logoWhite from "../../Images/logo_white.png";
+import {ADMIN_SUBJECT_EDIT, ADMIN_SUBJECTS, SUBJECTS} from "../../Entities/AppRoutes";
 
 type SubjectDetailsProps = {
     history: any
@@ -153,6 +154,12 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
         }
     }
 
+    private goToSuggestions() {
+        const appHistory = this.props.history
+        appHistory.push(ADMIN_SUBJECTS+"/"+this.state.subject.id+"/suggestions")
+    }
+
+
     render() {
         return (
             <div style={this.styles.container}>
@@ -213,8 +220,8 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
                         </ul>
 
                         <ul>
-                            <div style={{display: 'flex', flexDirection: 'row'}}>
-                                <div>
+                            <div style={{display: 'flex', flexDirection: 'row', height: '300px', justifyContent: 'center', alignItems: 'center'}}>
+                                <div style={{marginLeft: 10, marginRight: 10}}>
                                     <Typography use="subtitle1" style={this.styles.input}>Φωτογραφία Θέματος</Typography>
                                     <MultiImageInput
                                         images={this.state.subjectImage}
@@ -230,57 +237,43 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
                                         }}
                                     />
                                 </div>
-                                <div>
-                                    <ul>
-                                        <Typography use="subtitle1" style={this.styles.input}>Φωτογραφία Άρθρου</Typography>
-                                        <MultiImageInput
-                                            images={this.state.articleImage}
-                                            setImages={(images: any) => this.setState({articleImage: images})}
-                                            allowCrop={false}
-                                            max={1}
-                                            theme={{
-                                                background: '#ffffff',
-                                                outlineColor: '#111111',
-                                                textColor: 'rgba(255,255,255,0.6)',
-                                                buttonColor: '#ff0e1f',
-                                                modalColor: '#ffffff'
-                                            }}
-                                        />
-                                    </ul>
+                                <div style={{marginLeft: 10, marginRight: 10}}>
+                                    <Typography use="subtitle1" style={this.styles.input}>Φωτογραφία Άρθρου</Typography>
+                                    <MultiImageInput
+                                        images={this.state.articleImage}
+                                        setImages={(images: any) => this.setState({articleImage: images})}
+                                        allowCrop={false}
+                                        max={1}
+                                        theme={{
+                                            background: '#ffffff',
+                                            outlineColor: '#111111',
+                                            textColor: 'rgba(255,255,255,0.6)',
+                                            buttonColor: '#ff0e1f',
+                                            modalColor: '#ffffff'
+                                        }}
+                                    />
                                 </div>
-                                <div>
-                                    <ul>
-                                        <Typography use="subtitle1" style={this.styles.input}>TIPS</Typography>
-                                        <MultiImageInput
-                                            images={this.state.tipsImages}
-                                            setImages={(images: any) => this.setState({tipsImages: images})}
-                                            allowCrop={false}
-                                            max={10}
-                                            theme={{
-                                                background: '#ffffff',
-                                                outlineColor: '#111111',
-                                                textColor: 'rgba(255,255,255,0.6)',
-                                                buttonColor: '#ff0e1f',
-                                                modalColor: '#ffffff'
-                                            }}
+                                <div style={{marginLeft: 10, marginRight: 10}}>
+                                    <Typography use="subtitle1" style={this.styles.input}>TIPS</Typography>
+                                    <MultiImageInput
+                                        images={this.state.tipsImages}
+                                        setImages={(images: any) => this.setState({tipsImages: images})}
+                                        allowCrop={false}
+                                        max={10}
+                                        theme={{
+                                            background: '#ffffff',
+                                            outlineColor: '#111111',
+                                            textColor: 'rgba(255,255,255,0.6)',
+                                            buttonColor: '#ff0e1f',
+                                            modalColor: '#ffffff'
+                                        }}
                                         />
-                                    </ul>
                                 </div>
                             </div>
                         </ul>
 
                         <ul>
-                            <TextField
-                                style={this.styles.input}
-                                label="Suggestions"
-                                multiline={true}
-                                value={this.state.subject.suggestions}
-                                onChange={(e) => {
-                                    const subject = this.state.subject
-                                    subject.suggestions = e.target.value
-                                    this.setState({subject: subject})
-                                }}
-                            />
+                            <Button label={"SUGGESTIONS"} onClick={(e) => {this.goToSuggestions()}}/>
                         </ul>
                     </div>
                 </div>
