@@ -118,6 +118,7 @@ class AdminPanelSuggestionType extends React.Component<AdminPanelSuggestionTypeP
                     <MultiImageInput
                         images={this.state.suggestionTypeImgArr}
                         setImages={(images: any) => this.setState({suggestionTypeImgArr: images})}
+                        cropConfig={{ minWidth: 50 }}
                         allowCrop={false}
                         max={1}
                         theme={{

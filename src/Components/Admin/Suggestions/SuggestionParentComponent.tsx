@@ -4,7 +4,7 @@ import addIcon from '../../../Images/plus.png'
 import deleteImg from '../../../Images/deleteIcon.png'
 import {TextField} from "@material-ui/core";
 import {SuggestionParent} from "../../../Entities/Entities";
-import {wellnessLabLightBackground} from "../../../Entities/Colors";
+import ReactHtmlParser from 'react-html-parser';
 
 type SuggestionParentProp = {
     edit: boolean
@@ -19,6 +19,13 @@ class SuggestionParentComponent extends React.Component<SuggestionParentProp, Su
 
     constructor(props: SuggestionParentProp, state: SuggestionParentState) {
         super(props, state);
+    }
+
+    urlify(text: string) {
+        var urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.replace(urlRegex, function(url) {
+            return '<a href="' + url + '">' + url + '</a>';
+        })
     }
 
     render() {
@@ -36,7 +43,7 @@ class SuggestionParentComponent extends React.Component<SuggestionParentProp, Su
                     }
 
                     <img style={this.styles.suggestionTypeIcon} src={this.props.suggestionParent. suggestionType.img}/>
-                    { this.props.suggestionParent.suggestionType.name}
+                    <div style={{fontWeight: 600, fontSize: 18}}>{ this.props.suggestionParent.suggestionType.name}</div>
                 </div>
                 <div>
                     {
@@ -70,7 +77,7 @@ class SuggestionParentComponent extends React.Component<SuggestionParentProp, Su
                                                         this.props.onSuggestionParentChanged(suggestionParent)
                                                     }}
                                                 />
-                                                : <div>{suggestionTxt}</div>
+                                                : <div>- {ReactHtmlParser(this.urlify(suggestionTxt))}</div>
                                         }
                                     </div>
 
@@ -100,7 +107,7 @@ class SuggestionParentComponent extends React.Component<SuggestionParentProp, Su
         container: {display: 'flex', flexDirection: 'column' as 'column' },
         topRowContainer: {display: 'flex', flexDirection: 'row' as 'row', alignItems: 'center' as 'center', marginLeft: 10, marginRight: 10},
         deleteBtn: {width: 20, height: 20, marginRight: 10},
-        suggestionTypeIcon: {width: 40, height: 40, marginRight: 10},
+        suggestionTypeIcon: {width: 30, height: 30, marginRight: 10},
         suggestionParentLineContainer: {display: 'flex', flexDirection: 'row' as 'row'},
         textField: {flexGrow: 1, marginRight: 10}
     }

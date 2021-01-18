@@ -34,7 +34,7 @@ export const emptySubject: Subject = {id: "", title: "", imgUrl: "", article: em
                  subjectObj.id = doc.id
                  subjectObj.article = article
                  subjectObj.tips = tips
-                 subjectObj.suggestions = suggestions
+                 subjectObj.suggestions = (suggestions === undefined || suggestions === null || typeof suggestions === 'string') ? JSON.parse(JSON.stringify(emptySubjectSuggestion)) : suggestions
                  subjectObj.createdDate = creationDate
                  subjectObj.modifiedDate = modifiedDate
                  subjectsArray.push(subjectObj)
@@ -123,7 +123,7 @@ export const emptySubject: Subject = {id: "", title: "", imgUrl: "", article: em
                  subjectObj.id = result.id
                  subjectObj.article = article
                  subjectObj.tips = tips
-                 subjectObj.suggestions = suggestions
+                 subjectObj.suggestions = (suggestions === undefined || suggestions === null || typeof suggestions === 'string') ? JSON.parse(JSON.stringify(emptySubjectSuggestion)) : suggestions
                  subjectObj.createdDate = creationDate
                  subjectObj.modifiedDate = modifiedDate
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {emptySubject, getSubjectById} from "../../Repositories/SubjectsRepository";
-import {Subject} from "../../Entities/Entities";
+import {Subject, SuggestionParent} from "../../Entities/Entities";
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import {Button} from 'rmwc'
@@ -12,6 +12,7 @@ import tips from '../../Images/tips_icon.png'
 import suggestions from '../../Images/suggestions_icon.png'
 import {Palette} from "react-palette";
 import {emptySubjectSuggestion, emptySuggestionType} from "../../Repositories/SuggestionsRepository";
+import SuggestionParentComponent from "../Admin/Suggestions/SuggestionParentComponent";
 
 type SubjectDetailsProps = {
     history: any
@@ -106,7 +107,21 @@ class SubjectDetails extends React.Component<SubjectDetailsProps, SubjectDetails
                             {
                                 this.state.subject.suggestions !== JSON.parse(JSON.stringify(emptySubjectSuggestion))
                                     ? <div style={this.styles.suggestionsTxtContainer}>
-                                        {this.state.subject.suggestions}
+                                        <div style={{marginBottom: 20}}>
+                                            {this.state.subject.suggestions.mainText}
+                                        </div>
+
+                                        {
+                                            this.state.subject.suggestions.suggestions.map((suggestionParent: SuggestionParent) => {
+                                                return(
+                                                    <SuggestionParentComponent
+                                                    edit={false}
+                                                    suggestionParent={suggestionParent}
+                                                    onSuggestionParentChanged={() => {}}
+                                                    onSuggestionParentDelete={() => {}} />
+                                                )
+                                            })
+                                        }
                                     </div>
                                     : <div style={this.styles.noSuggestionsContainer}>
                                         <img alt={"No suggestions icon"} src={suggestions} style={this.styles.noContentIcon}/>
@@ -157,7 +172,7 @@ class SubjectDetails extends React.Component<SubjectDetailsProps, SubjectDetails
         suggestionsDivMobile: {display: 'flex', flexGrow: 1, width: '100%', alignItems: 'center', flexDirection: 'column' as 'column', marginTop: 20, marginBottom: 40},
         contentCardSuggestions: {width: '80%', height: 500},
         contentCardHoverSuggestions: {width: '80%', height: 500, boxShadow: "0px 0px 15px 1px rgba(53,53,53,0.89)"},
-        suggestionsTxtContainer: {display: 'flex', flexGrow: 1, whiteSpace: 'pre-line' as 'pre-line', overflowY: 'scroll' as 'scroll', padding: 25 },
+        suggestionsTxtContainer: {display: 'flex', flexGrow: 1, whiteSpace: 'pre-line' as 'pre-line', overflowY: 'scroll' as 'scroll', padding: 25, flexDirection: 'column' as 'column' },
         noSuggestionsContainer: {display: 'flex', flexGrow: 1, padding: 10, backgroundColor: '#dddddd', flexDirection: 'column' as 'column', alignItems: 'center' as 'center', justifyContent: 'center' as 'center'},
         eachSlide: {display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundSize: 'cover', height: 500, flexGrow: 1, width: '100%'},
         noContentIcon: {width: '150px', height: '150px'},

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { TextField } from "@material-ui/core";
 import WellnessCard from "../../CustomUIComponents/WellnessCard/WellnessCard";
-import { SubjectSuggestion, SuggestionParent, SuggestionType } from "../../../Entities/Entities";
+import {Subject, SubjectSuggestion, SuggestionParent, SuggestionType} from "../../../Entities/Entities";
 import { emptySubjectSuggestion, emptySuggestionType, getAllSuggestionTypes } from "../../../Repositories/SuggestionsRepository";
 import { Button, Select } from "rmwc";
 import {wellnessLabLightBackground, wellnessLabPrimary} from "../../../Entities/Colors";
 import SuggestionParentComponent from "./SuggestionParentComponent";
-import {updateSubjectSuggestion} from "../../../Repositories/SubjectsRepository";
+import {getSubjectById, updateSubjectSuggestion} from "../../../Repositories/SubjectsRepository";
 
 type AdminPanelSubjectEditingSuggestionsProps = {
     history: any
@@ -36,6 +36,15 @@ class AdminPanelSubjectEditingSuggestions extends React.Component<AdminPanelSubj
         const paths = this.props.history.location.pathname.split("/")
         this.subjectID = paths[paths.length - 2]
         console.log("Opened subject",this.subjectID)
+
+        getSubjectById(this.subjectID)
+            .then((subject: Subject) => {
+                console.log("SUBJECT", subject)
+                this.setState({subjectSuggestion: subject.suggestions === undefined ? JSON.parse(JSON.stringify(emptySubjectSuggestion)) : subject.suggestions})
+            })
+            .catch((error) => {
+
+            })
 
         getAllSuggestionTypes()
             .then((suggestionTypes: SuggestionType[]) => {
@@ -137,7 +146,7 @@ class AdminPanelSubjectEditingSuggestions extends React.Component<AdminPanelSubj
                     </div>
                     <Button
                         label={"ΑΠΟΘΗΚΕΥΣΗ"}
-                        style={{color: wellnessLabPrimary}}
+                        style={{color: wellnessLabPrimary, marginBottom: 50}}
                         onClick={(e) => {this.saveSubjectSuggestion()}}/>
 
                 </div>
