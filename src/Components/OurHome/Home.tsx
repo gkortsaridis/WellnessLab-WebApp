@@ -2,7 +2,7 @@ import * as React from 'react';
 import "rmwc/styles";
 import { Typography } from 'rmwc';
 import {Subject} from "../../Entities/Entities";
-import {emptySubject, getAllSubjects} from "../../Repositories/SubjectsRepository";
+import {emptySubject, getAllSubjects } from "../../Repositories/SubjectsRepository";
 
 import Facebook from "../../Images/facebook.png";
 import Twitter from "../../Images/twitter.png";
@@ -116,7 +116,7 @@ class Home extends React.Component<HomeProps, HomeState> {
         articleTitleTextContainer: {flexGrow: 1, display: 'flex', padding: '5px', alignItems: 'center' as 'center', justifyContent: 'center' as 'center'},
         articleTitleText: {textDecoration: 'none', color: 'black', textAlign: 'center' as 'center', fontSize: '20px', fontWeight: 600},
         socialMediaContainer: {display: 'flex', flexDirection: 'row' as 'row', flexWrap: 'wrap' as 'wrap'},
-        socialMediaCard: {display: 'flex', flexDirection: 'column' as 'column',flexGrow: 1, backgroundColor: '#F7F7F7', justifyContent: 'center' as 'center', alignItems: 'center' as 'center' },
+        socialMediaCard: {display: 'flex', flexDirection: 'column' as 'column',flexGrow: 1, backgroundColor: 'white', justifyContent: 'center' as 'center', alignItems: 'center' as 'center' },
         socialMediaImg: {width: '50px', height: '50px', marginBottom: '15px'},
         socialMediaTxt: {textDecoration:'none', fontSize: '20px'},
     }
