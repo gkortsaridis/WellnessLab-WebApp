@@ -11,7 +11,6 @@ import back from '../../Images/back_arrow.png'
 import tips from '../../Images/tips_icon.png'
 import suggestions from '../../Images/suggestions_icon.png'
 import {Palette} from "react-palette";
-import {emptySubjectSuggestion, emptySuggestionType} from "../../Repositories/SuggestionsRepository";
 import SuggestionParentComponent from "../Admin/Suggestions/SuggestionParentComponent";
 
 type SubjectDetailsProps = {
@@ -103,9 +102,9 @@ class SubjectDetails extends React.Component<SubjectDetailsProps, SubjectDetails
                     </div>
                     <div style={isMobile ? this.styles.suggestionsDivMobile : this.styles.suggestionsDiv}>
                         <div style={this.styles.title}>Suggestions</div>
-                        <WellnessCard width={'80%'} height={500} borderRadius={this.cardRadius} disableMove disabled={this.state.subject.suggestions === JSON.parse(JSON.stringify(emptySuggestionType))}>
+                        <WellnessCard width={'80%'} height={500} borderRadius={this.cardRadius} disableMove disabled={this.state.subject.suggestions.mainText === ""}>
                             {
-                                this.state.subject.suggestions !== JSON.parse(JSON.stringify(emptySubjectSuggestion))
+                                this.state.subject.suggestions.mainText !== ""
                                     ? <div style={this.styles.suggestionsTxtContainer}>
                                         <div style={{marginBottom: 20}}>
                                             {this.state.subject.suggestions.mainText}

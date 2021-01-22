@@ -122,7 +122,7 @@ class Team extends React.Component<{ }, {}> {
 
         for (let i=0; i<2; i++) {
             teamLeaders.push(
-                <div style={this.styles.itemCardContainer}>
+                <div key={this.team[i].name} style={this.styles.itemCardContainer}>
                     <WellnessTeamCard person={this.team[i]}/>
                 </div>
             )
@@ -130,7 +130,7 @@ class Team extends React.Component<{ }, {}> {
 
         for (let i=2; i<this.team.length; i++) {
             team.push(
-                <div style={this.styles.itemCardContainer}>
+                <div key={this.team[i].name} style={this.styles.itemCardContainer}>
                     <WellnessTeamCard person={this.team[i]}/>
                 </div>
             )

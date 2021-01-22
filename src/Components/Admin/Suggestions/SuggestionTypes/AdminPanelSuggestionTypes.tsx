@@ -4,9 +4,7 @@ import {getAllSuggestionTypes} from "../../../../Repositories/SuggestionsReposit
 import WellnessCard from "../../../CustomUIComponents/WellnessCard/WellnessCard";
 
 import plus from '../../../../Images/plus.png'
-import TextField from "@material-ui/core/TextField";
-import {Button} from "rmwc";
-import {ADMIN_SUGGESTION, ADMIN_SUGGESTIONS, SUBJECTS} from "../../../../Entities/AppRoutes";
+import {ADMIN_SUGGESTIONS } from "../../../../Entities/AppRoutes";
 
 type AdminPanelSuggestionTypesProps = {
     history: any

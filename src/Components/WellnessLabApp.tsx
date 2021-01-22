@@ -50,6 +50,8 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
     constructor(props: {}, state: WellnessLabAppState) {
         super(props, state);
 
+        console.log("Localhost : ", window.location.hostname)
+
         this.onPageSelected = this.onPageSelected.bind(this)
         this.state = { renderFlag : false }
 

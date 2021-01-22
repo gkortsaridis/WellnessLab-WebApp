@@ -146,9 +146,11 @@ class AdminPanelSubjectEditingSuggestions extends React.Component<AdminPanelSubj
                     </div>
                     <Button
                         label={"ΑΠΟΘΗΚΕΥΣΗ"}
-                        style={{color: wellnessLabPrimary, marginBottom: 50}}
+                        style={{color: wellnessLabPrimary, padding: 15}}
                         onClick={(e) => {this.saveSubjectSuggestion()}}/>
 
+                    <div style={{height: 50, width: '100%', padding: 20}}>
+                    </div>
                 </div>
                 <div style={this.styles.rightSide}>
                     <div style={this.styles.suggestionsTitle}>Suggestions</div>
@@ -164,7 +166,7 @@ class AdminPanelSubjectEditingSuggestions extends React.Component<AdminPanelSubj
     }
 
     styles = {
-        container: {width: '100%', height: '100vh', display: 'flex', flexGrow: 1, background: wellnessLabLightBackground},
+        container: {width: '100%', height: '100vh', display: 'flex', flexGrow: 1, background: wellnessLabLightBackground, overflowY: 'scroll' as 'scroll'},
         leftSide: {display: 'flex', width: '70%', flexGrow: 1, height: '100%', flexDirection: 'column' as 'column'},
         rightSide: {display: 'flex', width: '30%', flexGrow: 1, height: '100%', flexDirection: 'column' as 'column', alignItems: 'center' as 'center'},
         suggestionsTitle: {marginTop: 30, marginBottom: 20},

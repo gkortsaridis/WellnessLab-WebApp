@@ -20,7 +20,7 @@ import {
 import MultiImageInput from "react-multiple-image-input";
 import {wellnessLabPrimary} from "../../Entities/Colors";
 import logoWhite from "../../Images/logo_white.png";
-import {ADMIN_SUBJECT_EDIT, ADMIN_SUBJECTS, SUBJECTS} from "../../Entities/AppRoutes";
+import { ADMIN_SUBJECTS } from "../../Entities/AppRoutes";
 
 type SubjectDetailsProps = {
     history: any

@@ -94,15 +94,15 @@ export default function WellnessTeamCard(props) {
         const personSocial = [];
 
         personSocial.push(
-            <div onClick={handleClick}>
+            <div key={"bio"} onClick={handleClick}>
                 <img alt={"biography icon"} src={cv} style={cardStyle.teamMemberSocialIcon}/>
             </div>
         )
 
         for (let j=0; j<props.person.social.length; j++) {
             personSocial.push(
-                <div onClick={(e) => {openLink(props.person.social[j].url)}} >
-                    <FontAwesomeIcon icon={
+                <div key={props.person.social[j].name+"parent"}  onClick={(e) => {openLink(props.person.social[j].url)}} >
+                    <FontAwesomeIcon key={props.person.social[j].name} icon={
                         props.person.social[j].name === "facebook"
                             ? faFacebook
                             : props.person.social[j].name === "linkedin"
@@ -124,7 +124,7 @@ export default function WellnessTeamCard(props) {
     return (
         <animated.div
             ref={cardFront}
-            class="card"
+            className="card"
             onMouseMove={(e) => {
                 set({ xys: calc(e.clientX, e.clientY) })
             }}
@@ -135,19 +135,20 @@ export default function WellnessTeamCard(props) {
             onMouseEnter={() => {
                 if(!props.disabled) { setHover(true) }
             }}
-            style={Object.assign(props.style | {}, cardStyle.card, { transform: stuff.xys.interpolate(trans) })}
+            style={Object.assign(props.style | {}, cardStyle.card, { transform: stuff.xys.to(trans) })}
             onClick={props.onCardClick}>
-            <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical" containerStyle={{display: 'flex', flexGrow: 1, height: '100%'}}>
-                <div style={{display: 'flex', flexGrow: 1, height: '100%', flexDirection: 'column', backgroundColor: 'white'}}>
-                    <img alt={props.person.name} src={props.person.image} style={{width: 200, height: 200, resizeMode: 'contain', alignSelf: 'center', marginTop: 35}}/>
-                    <div style={{fontSize: 25, color: 'rgb(99, 148, 140)', alignSelf: 'center', marginTop: 20, fontWeight: 400}}>{props.person.name}</div>
-                    <div style={{fontSize: 20, color: 'rgb(255,63,128)', alignSelf: 'center', marginTop: 8, fontWeight: 400}}>{props.person.title}</div>
-                    <div style={{display: 'flex', flexDirection: 'row', alignSelf: 'center'}}>{getSocial()}</div>
+            <ReactCardFlip key={"f"} isFlipped={isFlipped} flipDirection="vertical" containerStyle={{display: 'flex', flexGrow: 1, height: '100%'}}>
+
+                <div key={"a"} style={{display: 'flex', flexGrow: 1, height: '100%', flexDirection: 'column', backgroundColor: 'white'}}>
+                    <img key={"b"} alt={props.person.name} src={props.person.image} style={{width: 200, height: 200, resizeMode: 'contain', alignSelf: 'center', marginTop: 35}}/>
+                    <div key={"c"} style={{fontSize: 25, color: 'rgb(99, 148, 140)', alignSelf: 'center', marginTop: 20, fontWeight: 400}}>{props.person.name}</div>
+                    <div key={"d"} style={{fontSize: 20, color: 'rgb(255,63,128)', alignSelf: 'center', marginTop: 8, fontWeight: 400}}>{props.person.title}</div>
+                    <div key={"e"} style={{display: 'flex', flexDirection: 'row', alignSelf: 'center'}}>{getSocial()}</div>
                 </div>
 
-                <div style={{display: 'flex', flexGrow: 1, backgroundColor: 'white', height: '100%', flexDirection: 'column'}} onClick={handleClick}>
+                <div key={"g"} style={{display: 'flex', flexGrow: 1, backgroundColor: 'white', height: '100%', flexDirection: 'column'}} onClick={handleClick}>
                     { /* <img src={back} style={{width: 20, height: 20, marginTop: 25, marginLeft: 25}}/> */}
-                    <div style={{ whiteSpace: 'pre-line', overflowY: 'scroll', padding: 25}}>{props.person.bio}</div>
+                    <div key={"h"}  style={{ whiteSpace: 'pre-line', overflowY: 'scroll', padding: 25}}>{props.person.bio}</div>
                 </div>
             </ReactCardFlip>
         </animated.div>

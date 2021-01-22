@@ -33,7 +33,7 @@ class Subjects extends React.Component<OurSubjectProps, OurSubjectsState> {
         const articleItems: JSX.Element[]= [];
         for (let i=0; i<this.state.subjects.length; i++) {
             articleItems.push(
-                <div style={this.styles.itemCardContainer} onClick={(e) => this.clickedLink(this.state.subjects[i].id)}>
+                <div key={this.state.subjects[i].title} style={this.styles.itemCardContainer} onClick={(e) => this.clickedLink(this.state.subjects[i].id)}>
                     <WellnessCard width={300} height={500} borderRadius={this.cardRadius}>
                         <div style={this.styles.articleCard}>
                             <div style={Object.assign({background: 'url('+this.state.subjects[i].imgUrl+') center / cover'}, this.styles.articleImage)}></div>

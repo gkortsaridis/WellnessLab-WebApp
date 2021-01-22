@@ -57,8 +57,7 @@ class WLToolbarItem extends React.Component<WLToolbarItemProps, WLToolbarItemSta
                     <p
                         style={this.state.isHovering ? this.styles.textHover : this.isActive ? this.styles.textActive : this.styles.textNotHover}
                         onMouseEnter={this.onMouseEnter}
-                        onMouseLeave={this.onMouseLeave}
-                        onClick={this.onClick}>
+                        onMouseLeave={this.onMouseLeave}>
                         {this.props.name}
                     </p>
                 </div>
@@ -76,7 +75,8 @@ class WLToolbarItem extends React.Component<WLToolbarItemProps, WLToolbarItemSta
             height: 35,
             display: 'flex',
             justifyContent: 'center' as 'center',
-            alignItems: 'center' as 'center'
+            alignItems: 'center' as 'center',
+            borderRadius: 5
         },
         textHover: {
             color: '#4A6F69',

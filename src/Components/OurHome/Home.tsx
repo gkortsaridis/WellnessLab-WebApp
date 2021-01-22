@@ -42,7 +42,7 @@ class Home extends React.Component<HomeProps, HomeState> {
 
         for (let i=0; i<socialMedia.length; i++) {
             this.socialItems.push(
-                <div style={this.styles.itemCardContainer} >
+                <div key={socialMedia[i].name} style={this.styles.itemCardContainer} >
                     <WellnessCard width={150} height={150} borderRadius={this.cardRadius} onCardClick={() => { this.clickedLink(socialMedia[i].url)}}>
                         <div style={this.styles.socialMediaCard}>
                             <img alt={socialMedia[i].name} style={this.styles.socialMediaImg} src={

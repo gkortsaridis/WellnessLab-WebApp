@@ -70,7 +70,7 @@ export default function WellnessCard(props) {
     return (
         <animated.div
             ref={inputRef}
-            class="card"
+            className="card"
             onMouseMove={(e) => {
                 set({ xys: calc(e.clientX, e.clientY) })
             }}
@@ -81,7 +81,7 @@ export default function WellnessCard(props) {
             onMouseEnter={() => {
                 if(!props.disabled) { setHover(true) }
             }}
-            style={Object.assign(props.style | {}, cardStyle.card, { transform: stuff.xys.interpolate(trans) })}
+            style={Object.assign(props.style | {}, cardStyle.card, { transform: stuff.xys.to(trans) })}
             onClick={props.onCardClick}>
             {props.children}
         </animated.div>

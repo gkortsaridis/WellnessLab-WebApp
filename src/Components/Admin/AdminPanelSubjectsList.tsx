@@ -3,7 +3,7 @@ import WellnessCard from "../CustomUIComponents/WellnessCard/WellnessCard";
 
 import {getAllSubjects} from "../../Repositories/SubjectsRepository";
 import {Subject} from "../../Entities/Entities";
-import {ADMIN, ADMIN_SUBJECT_EDIT, SUBJECTS} from "../../Entities/AppRoutes";
+import { ADMIN } from "../../Entities/AppRoutes";
 
 import plus from '../../Images/plus.png'
 
