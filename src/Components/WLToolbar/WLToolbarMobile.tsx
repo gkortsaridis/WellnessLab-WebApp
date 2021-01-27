@@ -1,9 +1,10 @@
 import * as React from 'react';
 import "rmwc/styles";
-import {MenuItem, IconButton, SimpleMenu } from 'rmwc';
-import coverImg from "../../Images/cover1.jpg";
+import {MenuItem, SimpleMenu, IconButton} from 'rmwc';
 import logoWhite from "../../Images/logo_white.png";
 import {ACTIONS, HOME, SUBJECTS, TEAM } from "../../Entities/AppRoutes";
+import menu from '../../Images/menu.png'
+import {wellnessLabPrimary} from "../../Entities/Colors";
 
 type WLToolbarProps = {
     onPageSelected: (page: string) => void;
@@ -43,7 +44,7 @@ class WLToolbarMobile extends React.Component<WLToolbarProps, WLToolbarMobileSta
                     <p style={this.stylesMobile.logoText}>WellnessLab</p>
 
                     <div style={this.stylesMobile.menu}>
-                        <SimpleMenu onSelect={evt => this.onMenuItemClicked(evt.detail.index)} handle={<IconButton icon={"menu"} />} anchorCorner={'bottomLeft'}>
+                        <SimpleMenu onSelect={evt => this.onMenuItemClicked(evt.detail.index)} handle={<img style={{width: 30, height: 30}} src={menu}/>} anchorCorner={'bottomLeft'}>
                             <MenuItem>Αρχική</MenuItem>
                             <MenuItem>Θέματα</MenuItem>
                             <MenuItem>Δράσεις</MenuItem>
@@ -51,16 +52,13 @@ class WLToolbarMobile extends React.Component<WLToolbarProps, WLToolbarMobileSta
                         </SimpleMenu>
                     </div>
                 </div>
-
-                <div style={this.stylesMobile.fader}/>
-
             </div>
         )
     }
 
     stylesMobile = {
         container: {
-            backgroundImage:`url(${coverImg})`,
+            backgroundColor:wellnessLabPrimary,
             backgroundSize: 'cover',
             display: 'flex',
             flexDirection: 'column' as 'column'
@@ -87,10 +85,6 @@ class WLToolbarMobile extends React.Component<WLToolbarProps, WLToolbarMobileSta
         },
         menu: {
           marginRight: 20
-        },
-        fader: {
-            height: 10,
-            background: "linear-gradient(transparent, #ffffff)"
         }
     }
 }

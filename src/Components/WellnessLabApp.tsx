@@ -18,11 +18,11 @@ import {
     ACTIONS,
     ADMIN,
     ADMIN_SUBJECT_EDIT, ADMIN_SUBJECT_EDIT_SUGGESTIONS,
-    ADMIN_SUBJECTS, ADMIN_SUGGESTION, ADMIN_SUGGESTIONS,
+    ADMIN_SUBJECTS, ADMIN_SUGGESTION, ADMIN_SUGGESTIONS, HEALTH_EXPERIENCES,
     HOME,
     SUBJECT_DETAILS,
-    SUBJECTS,
-    TEAM,
+    SUBJECTS, SEMINARS,
+    TEAM, TV_INTERVIEW,
     VIDEOS
 } from "../Entities/AppRoutes";
 import AdminPanelSubjectsList from "./Admin/AdminPanelSubjectsList";
@@ -30,6 +30,9 @@ import AdminPanelSubjectEditing from "./Admin/AdminPanelSubjectEditing";
 import AdminPanelSuggestionTypes from "./Admin/Suggestions/SuggestionTypes/AdminPanelSuggestionTypes";
 import AdminPanelSuggestionType from "./Admin/Suggestions/SuggestionTypes/AdminPanelSuggestionType";
 import AdminPanelSubjectEditingSuggestions from "./Admin/Suggestions/AdminPanelSubjectEditingSuggestions";
+import HealthExperiences from "./OurActions/HealthExperiences";
+import Seminars from "./OurActions/Seminars";
+import TVInterview from "./OurActions/TVInterview";
 
 type WellnessLabAppState = { renderFlag: boolean }
 
@@ -96,7 +99,25 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
 
                     <Route exact path={ACTIONS}>
                         <div style={this.styles.container}>
-                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Actions/>
+                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Actions history={this.appHistory}/>
+                        </div>
+                    </Route>
+
+                    <Route exact path={HEALTH_EXPERIENCES}>
+                        <div style={this.styles.container}>
+                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <HealthExperiences/>
+                        </div>
+                    </Route>
+
+                    <Route exact path={SEMINARS}>
+                        <div style={this.styles.container}>
+                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Seminars/>
+                        </div>
+                    </Route>
+
+                    <Route exact path={TV_INTERVIEW}>
+                        <div style={this.styles.container}>
+                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <TVInterview/>
                         </div>
                     </Route>
 

@@ -138,19 +138,8 @@ class SubjectDetails extends React.Component<SubjectDetailsProps, SubjectDetails
     cardRadius = 15
 
     styles = {
-        container: {
-            display: 'flex',
-            flexDirection: 'column' as 'column',
-            flex: 1,
-            background: 'white'
-        },
-        smallToolbar: {
-            display: 'flex',
-            flexDirection: 'row' as 'row',
-            alignItems: 'center' as 'center',
-            padding: 15,
-            backgroundColor: '#F7F7F7'
-        },
+        container: {display: 'flex', flexDirection: 'column' as 'column', flex: 1, background: 'white'},
+        smallToolbar: {display: 'flex', flexDirection: 'row' as 'row', alignItems: 'center' as 'center', padding: 15, backgroundColor: '#F7F7F7'},
         backBtn: {width: 25, height: 25, marginRight: 10},
         backTxt: {fontSize: 20},
         dataContainer: {display: 'flex', flexDirection: 'row' as 'row', flexGrow: 1, backgroundColor: '#F7F7F7'},
