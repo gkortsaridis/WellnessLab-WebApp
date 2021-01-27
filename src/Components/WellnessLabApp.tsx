@@ -36,7 +36,7 @@ import TVInterview from "./OurActions/TVInterview";
 
 type WellnessLabAppState = { renderFlag: boolean }
 
-const firebaseConfig = {
+const firebaseConfigPROD = {
     apiKey: "AIzaSyDY9zLRl7EOpKR02SWCGpwW2jkrh-YU2uY",
     authDomain: "wellness-lab.firebaseapp.com",
     projectId: "wellness-lab",
@@ -44,6 +44,16 @@ const firebaseConfig = {
     messagingSenderId: "885154242879",
     appId: "1:885154242879:web:0986faa0998be6476e338a",
     measurementId: "G-P1FY85Q6PG"
+};
+
+const firebaseConfigDEV = {
+    apiKey: "AIzaSyDr-ubdaSt7rdBtOZMEFQdZEa8oTfK8QIc",
+    authDomain: "wellneab-dev.firebaseapp.com",
+    projectId: "wellneab-dev",
+    storageBucket: "wellneab-dev.appspot.com",
+    messagingSenderId: "72411347801",
+    appId: "1:72411347801:web:2f3956bfb0de2e75826a48",
+    measurementId: "G-X0QZZ72V16"
 };
 
 class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
@@ -59,12 +69,16 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
         this.state = { renderFlag : false }
 
         // Initialize Firebase
-        if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig) }
+        if (!firebase.apps.length) { firebase.initializeApp(this.isLocalhost() ? firebaseConfigDEV : firebaseConfigPROD) }
         else { firebase.app(); }
 
         this.appHistory.listen((listener) => {
             this.setState({ renderFlag: !this.state.renderFlag })
         })
+    }
+
+    private isLocalhost(){
+        return window.location.hostname === "localhost" || window.location.hostname === "0.0.0.0" || window.location.hostname === "127.0.0.0"
     }
 
     private onPageSelected(page: string) {

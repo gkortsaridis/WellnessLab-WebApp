@@ -21,10 +21,7 @@ class TVInterview extends React.Component<{ }, {}> {
     }
 
     styles = {
-        container: {
-            flex: 1,
-            background: 'white'
-        }
+        container: {flex: 1, background: 'white'}
     }
 }
 
