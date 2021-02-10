@@ -122,6 +122,12 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
             createdDate: this.state.subject.createdDate
         }
 
+        if(updatedSubject.imgUrl === undefined) {
+            updatedSubject.imgUrl = ""
+        } else if (updatedSubject.article.imgUrl === undefined) {
+            updatedSubject.article.imgUrl = ""
+        }
+
         if(this.state.subject.id !== emptySubject.id) {
             console.log(updatedSubject)
             //Update
@@ -237,7 +243,10 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
                                         }}
                                     />
                                 </div>
-                                <div style={{marginLeft: 10, marginRight: 10}}>
+
+                                {
+                                    /*
+                                    * <div style={{marginLeft: 10, marginRight: 10}}>
                                     <Typography use="subtitle1" style={this.styles.input}>Φωτογραφία Άρθρου</Typography>
                                     <MultiImageInput
                                         images={this.state.articleImage}
@@ -253,6 +262,9 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
                                         }}
                                     />
                                 </div>
+                                    * */
+                                }
+
                                 <div style={{marginLeft: 10, marginRight: 10}}>
                                     <Typography use="subtitle1" style={this.styles.input}>TIPS</Typography>
                                     <MultiImageInput

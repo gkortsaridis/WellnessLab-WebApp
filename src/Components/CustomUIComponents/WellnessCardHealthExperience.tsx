@@ -27,8 +27,8 @@ class WellnessCardHealthExperience extends React.Component<WellnessCardHealthExp
                 <ReactCardFlip key={"f"} isFlipped={this.state.cardFlipped} flipDirection="vertical" containerStyle={{display: 'flex', flexGrow: 1, width: '100%', height: '100%'}}>
 
                     <div key={"a"} style={{display: 'flex', flexGrow: 1, flexDirection: 'column', backgroundColor: 'white', width: '100%', height: '100%'}}>
-                        <img key={"b"} alt={this.props.healthExperience.title} src={this.props.healthExperience.img} style={{width: '100%', height: '90%' }}/>
-                        <div key={"c"} style={{fontSize: 25, color: 'rgb(99, 148, 140)', alignItems: 'center', justifyContent: 'center', height: '10%', fontWeight: 400, display: 'flex'}}>
+                        <div key={"b"}  style={Object.assign({background: 'url('+this.props.healthExperience.img+') center / cover'}, this.styles.cardImage)} />
+                        <div key={"c"} style={{fontSize: 25, color: 'rgb(99, 148, 140)', alignItems: 'center', justifyContent: 'center', height: '10%', fontWeight: 400, display: 'flex', padding: 20, textAlign: 'center' as 'center'}}>
                             <div>
                                 {this.props.healthExperience.title}
                             </div>
@@ -46,6 +46,7 @@ class WellnessCardHealthExperience extends React.Component<WellnessCardHealthExp
     }
 
     styles = {
+        cardImage: {width: '100%', height: '90%', overflow: 'hidden', borderRadius: 15}
     }
 }
 

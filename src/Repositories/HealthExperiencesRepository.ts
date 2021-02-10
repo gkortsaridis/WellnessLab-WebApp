@@ -1,9 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore'; // If using Firebase database
 
-import { HealthExperience } from "../Entities/Entities";
+import {HealthExperience, Subject} from "../Entities/Entities";
 
-export const emptyHealthExperience: HealthExperience = {title: "UNKNOWN", img: "", description: "", id: "-1"}
+export const emptyHealthExperience: HealthExperience = {title: "UNKNOWN", img: "", description: "", id: "-1", createdDate: Date.now(), modifiedDate: Date.now()}
 export let allHealthExperiences: HealthExperience[] = []
 
 let DB_NAME = "health_experiences"
@@ -21,17 +21,23 @@ export function getAllHealthExperiences() {
                     const title = doc.data().title
                     const img = doc.data().img
                     const desc = doc.data().description
+                    const createdDate = doc.data().createdDate
+                    const modifiedDate = doc.data().modifiedDate
 
                     healthExperienceObj.title = title
                     healthExperienceObj.img = img
                     healthExperienceObj.description = desc
                     healthExperienceObj.id = doc.id
+                    healthExperienceObj.createdDate = createdDate
+                    healthExperienceObj.modifiedDate = modifiedDate
 
                     healthExperiencesArr.push(healthExperienceObj)
 
                     if(cnt === snapshot.docs.length - 1) {
                         allHealthExperiences = healthExperiencesArr
                         console.log("CACHING HEALTH EXPERIENCES")
+                        healthExperiencesArr.sort((a: HealthExperience, b: HealthExperience) => a.modifiedDate < b.modifiedDate ? 1 : -1)
+
                         resolve(healthExperiencesArr)
                     }
                 }
@@ -67,7 +73,8 @@ export function updateHealthExperience(healthExperience: HealthExperience) {
         firebase.firestore().collection(DB_NAME).doc(healthExperience.id).set({
             title: healthExperience.title,
             img: healthExperience.img,
-            description: healthExperience.description
+            description: healthExperience.description,
+            modifiedDate: Date.now()
         })
             .then((result) => {
                 allHealthExperiences = []
@@ -82,7 +89,9 @@ export function createHealthExperience(healthExperience: HealthExperience) {
         firebase.firestore().collection(DB_NAME).add({
             title: healthExperience.title,
             img: healthExperience.img,
-            description: healthExperience.description
+            description: healthExperience.description,
+            createdDate: Date.now(),
+            modifiedDate: Date.now()
         })
             .then((result) => {
                 allHealthExperiences = []

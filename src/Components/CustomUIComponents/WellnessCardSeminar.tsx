@@ -27,8 +27,8 @@ class WellnessCardSeminar extends React.Component<WellnessCardSeminarProps, Well
                 <ReactCardFlip key={"f"} isFlipped={this.state.cardFlipped} flipDirection="vertical" containerStyle={{display: 'flex', flexGrow: 1, width: '100%', height: '100%'}}>
 
                     <div key={"a"} style={{display: 'flex', flexGrow: 1, flexDirection: 'column', backgroundColor: 'white', width: '100%', height: '100%'}}>
-                        <img key={"b"} alt={this.props.seminar.title} src={this.props.seminar.img} style={{width: '100%', height: '90%' }}/>
-                        <div key={"c"} style={{fontSize: 25, color: 'rgb(99, 148, 140)', alignItems: 'center', justifyContent: 'center', height: '10%', fontWeight: 400, display: 'flex'}}>
+                        <div key={"b"}  style={Object.assign({background: 'url('+this.props.seminar.img+') center / cover'}, this.styles.cardImage)} />
+                        <div key={"c"} style={{fontSize: 25, color: 'rgb(99, 148, 140)', alignItems: 'center', justifyContent: 'center', height: '10%', fontWeight: 400, display: 'flex', padding: 20, textAlign: 'center' as 'center'}}>
                             <div>
                                 {this.props.seminar.title}
                             </div>
@@ -46,10 +46,7 @@ class WellnessCardSeminar extends React.Component<WellnessCardSeminarProps, Well
     }
 
     styles = {
-        container: {
-            flex: 1,
-            background: 'white'
-        }
+        cardImage: {width: '100%', height: '90%', overflow: 'hidden', borderRadius: 15}
     }
 }
 

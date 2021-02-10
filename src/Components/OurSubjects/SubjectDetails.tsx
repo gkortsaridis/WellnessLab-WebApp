@@ -67,7 +67,7 @@ class SubjectDetails extends React.Component<SubjectDetailsProps, SubjectDetails
                     <div style={isMobile ? this.styles.articleDivMobile : this.styles.articleDiv}>
                         <div style={this.styles.title}>Άρθρο</div>
                         <WellnessCard width={'80%'} height={500} borderRadius={this.cardRadius} disableMove>
-                            <div style={{width: '100%', height: 400,  background: 'url('+this.state.subject.article.imgUrl+') center / cover'}} />
+                            <div style={{width: '100%', height: 400,  background: 'url('+this.state.subject.imgUrl+') center / cover'}} />
                             <div style={this.styles.articleTextContainer}>
                                 <div>{this.state.subject.article.title}</div>
                                 <Button label={"ΔΙΑΒΑΣΕ ΤΟ"} onClick={() => {this.readArticle(this.state.subject.article.articleUrl)}}/>
