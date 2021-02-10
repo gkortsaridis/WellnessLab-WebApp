@@ -23,16 +23,20 @@ import {
     SUBJECT_DETAILS,
     SUBJECTS, SEMINARS,
     TEAM, TV_INTERVIEW,
-    VIDEOS
+    VIDEOS, ADMIN_SEMINARS, ADMIN_SEMINARS_EDIT, ADMIN_HEALTH_EXPERIENCES, ADMIN_HEALTH_EXPERIENCES_EDIT
 } from "../Entities/AppRoutes";
-import AdminPanelSubjectsList from "./Admin/AdminPanelSubjectsList";
-import AdminPanelSubjectEditing from "./Admin/AdminPanelSubjectEditing";
+import AdminPanelSubjectsList from "./Admin/Subjects/AdminPanelSubjectsList";
+import AdminPanelSubjectEditing from "./Admin/Subjects/AdminPanelSubjectEditing";
 import AdminPanelSuggestionTypes from "./Admin/Suggestions/SuggestionTypes/AdminPanelSuggestionTypes";
 import AdminPanelSuggestionType from "./Admin/Suggestions/SuggestionTypes/AdminPanelSuggestionType";
 import AdminPanelSubjectEditingSuggestions from "./Admin/Suggestions/AdminPanelSubjectEditingSuggestions";
 import HealthExperiences from "./OurActions/HealthExperiences";
 import Seminars from "./OurActions/Seminars";
 import TVInterview from "./OurActions/TVInterview";
+import AdminPanelSeminarsList from "./Admin/Seminars/AdminPanelSeminarsList";
+import AdminPanelSeminarEdit from "./Admin/Seminars/AdminPanelSeminarEdit";
+import AdminPanelHealthExperiencesList from "./Admin/HealthExperiences/AdminPanelHealthExperiencesList";
+import AdminPanelHealthExperienceEdit from "./Admin/HealthExperiences/AdminPanelHealthExperienceEdit";
 
 type WellnessLabAppState = { renderFlag: boolean }
 
@@ -119,13 +123,13 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
 
                     <Route exact path={HEALTH_EXPERIENCES}>
                         <div style={this.styles.container}>
-                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <HealthExperiences/>
+                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <HealthExperiences history={this.appHistory}/>
                         </div>
                     </Route>
 
                     <Route exact path={SEMINARS}>
                         <div style={this.styles.container}>
-                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Seminars/>
+                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Seminars history={this.appHistory}/>
                         </div>
                     </Route>
 
@@ -170,6 +174,22 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
 
                     <Route exact path={ADMIN_SUBJECT_EDIT_SUGGESTIONS}>
                         <AdminPanelSubjectEditingSuggestions history={this.appHistory}/>
+                    </Route>
+
+                    <Route exact path={ADMIN_SEMINARS}>
+                        <AdminPanelSeminarsList history={this.appHistory}/>
+                    </Route>
+
+                    <Route exact path={ADMIN_SEMINARS_EDIT}>
+                        <AdminPanelSeminarEdit history={this.appHistory}/>
+                    </Route>
+
+                    <Route exact path={ADMIN_HEALTH_EXPERIENCES}>
+                        <AdminPanelHealthExperiencesList history={this.appHistory}/>
+                    </Route>
+
+                    <Route exact path={ADMIN_HEALTH_EXPERIENCES_EDIT}>
+                        <AdminPanelHealthExperienceEdit history={this.appHistory}/>
                     </Route>
 
                     <Route path="*">

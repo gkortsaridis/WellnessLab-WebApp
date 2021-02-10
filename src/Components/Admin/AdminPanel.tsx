@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Button} from 'rmwc';
-import {ADMIN_SUBJECTS, ADMIN_SUGGESTIONS} from "../../Entities/AppRoutes";
+import {ADMIN_HEALTH_EXPERIENCES, ADMIN_SEMINARS, ADMIN_SUBJECTS, ADMIN_SUGGESTIONS} from "../../Entities/AppRoutes";
 
 type AdminPanelState = { }
 type AdminPanelProps = {
@@ -14,6 +14,8 @@ class AdminPanel extends React.Component<AdminPanelProps, AdminPanelState> {
 
         this.goToSubjectList = this.goToSubjectList.bind(this)
         this.goToSuggestionTypes = this.goToSuggestionTypes.bind(this)
+        this.goToHealthExperiences = this.goToHealthExperiences.bind(this)
+        this.goToSeminars = this.goToSeminars.bind(this)
     }
 
     private goToSubjectList() {
@@ -26,6 +28,16 @@ class AdminPanel extends React.Component<AdminPanelProps, AdminPanelState> {
         appHistory.push(ADMIN_SUGGESTIONS)
     }
 
+    private goToHealthExperiences() {
+        const appHistory = this.props.history
+        appHistory.push(ADMIN_HEALTH_EXPERIENCES)
+    }
+
+    private goToSeminars() {
+        const appHistory = this.props.history
+        appHistory.push(ADMIN_SEMINARS)
+    }
+
     render() {
         return (
             <div style={this.styles.app}>
@@ -34,8 +46,10 @@ class AdminPanel extends React.Component<AdminPanelProps, AdminPanelState> {
                     </div>
 
                     <div style={this.styles.dataUI}>
-                        <Button label={"Θέματα"} onClick={this.goToSubjectList}/>
-                        <Button label={"Suggestions"} onClick={this.goToSuggestionTypes}/>
+                        <Button label={"ΘΕΜΑΤΑ"} onClick={this.goToSubjectList}/>
+                        <Button label={"SUGGETSIONS"} onClick={this.goToSuggestionTypes}/>
+                        <Button label={"ΣΕΜΙΝΑΡΙΑ"} onClick={this.goToSeminars}/>
+                        <Button label={"ΕΜΠΕΙΡΙΕΣ ΥΓΕΙΑΣ"} onClick={this.goToHealthExperiences}/>
                     </div>
                 </div>
             </div>

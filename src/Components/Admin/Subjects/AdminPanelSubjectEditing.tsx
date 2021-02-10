@@ -5,8 +5,8 @@ import {
     emptySubject,
     getSubjectById,
     updateSubject
-} from "../../Repositories/SubjectsRepository";
-import {Article, Subject} from "../../Entities/Entities";
+} from "../../../Repositories/SubjectsRepository";
+import {Article, Subject} from "../../../Entities/Entities";
 import TextField from "@material-ui/core/TextField";
 import {
     Button,
@@ -18,9 +18,9 @@ import {
     Typography
 } from "rmwc";
 import MultiImageInput from "react-multiple-image-input";
-import {wellnessLabPrimary} from "../../Entities/Colors";
-import logoWhite from "../../Images/logo_white.png";
-import { ADMIN_SUBJECTS } from "../../Entities/AppRoutes";
+import {wellnessLabPrimary} from "../../../Entities/Colors";
+import logoWhite from "../../../Images/logo_white.png";
+import { ADMIN_SUBJECTS } from "../../../Entities/AppRoutes";
 
 type SubjectDetailsProps = {
     history: any

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import WellnessCard from "../CustomUIComponents/WellnessCard/WellnessCard";
+import WellnessCard from "../../CustomUIComponents/WellnessCard/WellnessCard";
 
-import {getAllSubjects} from "../../Repositories/SubjectsRepository";
-import {Subject} from "../../Entities/Entities";
-import { ADMIN } from "../../Entities/AppRoutes";
+import {getAllSubjects} from "../../../Repositories/SubjectsRepository";
+import {Subject} from "../../../Entities/Entities";
+import { ADMIN } from "../../../Entities/AppRoutes";
 
-import plus from '../../Images/plus.png'
+import plus from '../../../Images/plus.png'
 
 type OurSubjectsState = { subjects: Subject[] }
 type OurSubjectProps = { history: any }
