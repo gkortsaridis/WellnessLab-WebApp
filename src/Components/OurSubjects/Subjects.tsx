@@ -5,6 +5,7 @@ import {getAllSubjects} from "../../Repositories/SubjectsRepository";
 import {Subject} from "../../Entities/Entities";
 import {SUBJECTS} from "../../Entities/AppRoutes";
 import {isMobile} from "react-device-detect";
+import WellnessCardSubject from "../CustomUIComponents/WellnessCardSubject";
 
 type OurSubjectsState = { subjects: Subject[] }
 type OurSubjectProps = { history: any }
@@ -35,14 +36,7 @@ class Subjects extends React.Component<OurSubjectProps, OurSubjectsState> {
         for (let i=0; i<this.state.subjects.length; i++) {
             articleItems.push(
                 <div key={this.state.subjects[i].title} style={this.styles.itemCardContainer} onClick={(e) => this.clickedLink(this.state.subjects[i].id)}>
-                    <WellnessCard width={300} height={500} borderRadius={this.cardRadius}>
-                        <div style={this.styles.articleCard}>
-                            <div style={Object.assign({background: 'url('+this.state.subjects[i].imgUrl+') center / cover'}, this.styles.articleImage)}></div>
-                            <div style={this.styles.articleTitleContainer}>
-                                <p style={this.styles.articleTitleText}>{this.state.subjects[i].title}</p>
-                            </div>
-                        </div>
-                    </WellnessCard>
+                    <WellnessCardSubject subject={this.state.subjects[i]} onSubjectClicked={(subject: Subject) => {this.clickedLink(subject.id)}}/>
                 </div>
             );
         }

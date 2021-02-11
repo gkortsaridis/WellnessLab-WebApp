@@ -14,6 +14,7 @@ import cover from '../../Images/front_cover.png'
 import WellnessCard from "../CustomUIComponents/WellnessCard/WellnessCard";
 import {SUBJECTS} from "../../Entities/AppRoutes";
 import {wellnessLabLightBackground} from "../../Entities/Colors";
+import WellnessCardSubject from "../CustomUIComponents/WellnessCardSubject";
 
 type HomeState = { latestSubject: Subject }
 type HomeProps = { history: any }
@@ -88,14 +89,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                 <div style={this.styles.rightSide}>
                     <Typography style={this.styles.topText} use="headline4">Διαβάστε σχετικά<br/>με το τελευταίο μας θέμα</Typography>
                     <div style={this.styles.itemCardContainer}>
-                        <WellnessCard width={300} height={500} borderRadius={this.cardRadius} onCardClick={this.openSubject}>
-                            <div style={this.styles.articleCard}>
-                                <div style={Object.assign({background: 'url('+this.state.latestSubject.imgUrl+') center / cover'}, this.styles.articleImage)}></div>
-                                <div style={this.styles.articleTitleTextContainer}>
-                                    <div style={this.styles.articleTitleText}>{this.state.latestSubject.title}</div>
-                                </div>
-                            </div>
-                        </WellnessCard>
+                        <WellnessCardSubject subject={this.state.latestSubject} onSubjectClicked={this.openSubject}/>
                     </div>
                 </div>
             </div>
@@ -110,11 +104,6 @@ class Home extends React.Component<HomeProps, HomeState> {
         leftSide: {display: 'flex', width: '70%', flexDirection: 'column' as 'column'},
         rightSide: {display: 'flex', width: '30%', flexDirection: 'column' as 'column', justifyContent: 'center' as 'center', alignItems: 'center' as 'center'},
         itemCardContainer: {padding: '10px'},
-        articleCard: {display: "flex", flexGrow: 1, flexDirection: 'column' as 'column', backgroundColor: 'white'},
-        articleImage: {width: '300px', height: '400px', overflow: 'hidden'},
-        articleTitleContainer: {width: '300px', height: '100px', backgroundColor: 'white', display: 'table', textAlign: 'center' as 'center', borderRadius: this.cardRadius},
-        articleTitleTextContainer: {flexGrow: 1, display: 'flex', padding: '5px', alignItems: 'center' as 'center', justifyContent: 'center' as 'center'},
-        articleTitleText: {textDecoration: 'none', color: 'black', textAlign: 'center' as 'center', fontSize: '20px', fontWeight: 600},
         socialMediaContainer: {display: 'flex', flexDirection: 'row' as 'row', flexWrap: 'wrap' as 'wrap'},
         socialMediaCard: {display: 'flex', flexDirection: 'column' as 'column',flexGrow: 1, backgroundColor: 'white', justifyContent: 'center' as 'center', alignItems: 'center' as 'center' },
         socialMediaImg: {width: '50px', height: '50px', marginBottom: '15px'},

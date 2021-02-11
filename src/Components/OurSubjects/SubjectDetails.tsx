@@ -67,7 +67,7 @@ class SubjectDetails extends React.Component<SubjectDetailsProps, SubjectDetails
                     <div style={isMobile ? this.styles.articleDivMobile : this.styles.articleDiv}>
                         <div style={this.styles.title}>Άρθρο</div>
                         <WellnessCard width={'80%'} height={500} borderRadius={this.cardRadius} disableMove>
-                            <div style={{width: '100%', height: 400,  background: 'url('+this.state.subject.imgUrl+') center / cover'}} />
+                            <div style={{width: '100%', height: 400,  background: 'url('+this.state.subject.imgUrl+') center / cover', borderRadius: this.cardRadius}} />
                             <div style={this.styles.articleTextContainer}>
                                 <div>{this.state.subject.article.title}</div>
                                 <Button label={"ΔΙΑΒΑΣΕ ΤΟ"} onClick={() => {this.readArticle(this.state.subject.article.articleUrl)}}/>
@@ -149,7 +149,7 @@ class SubjectDetails extends React.Component<SubjectDetailsProps, SubjectDetails
         title: {fontSize: 25, fontWeight: 100, paddingBottom: 10},
         contentCardArticle: {width: '80%', height: 500},
         contentCardHoverArticle: {width: '80%', height: 500, boxShadow: "0px 0px 15px 1px rgba(53,53,53,0.89)"},
-        articleTextContainer: {height: 100, fontSize: 20, justifyContent: 'center' as 'center', alignItems: 'center' as 'center', display: 'flex', flexDirection: 'column' as 'column'},
+        articleTextContainer: {height: 100, fontSize: 20, justifyContent: 'center' as 'center', alignItems: 'center' as 'center', display: 'flex', flexDirection: 'column' as 'column', textAlign: 'center' as 'center'},
         tipsDiv: {display: 'flex', flexGrow: 1, width: '33%', flexDirection: 'column' as 'column', alignItems: 'center',},
         tipsDivMobile: {display: 'flex', flexGrow: 1, width: '100%', flexDirection: 'column' as 'column', alignItems: 'center', marginTop: 20},
         contentCardTips: {width: '80%', height: 500},
