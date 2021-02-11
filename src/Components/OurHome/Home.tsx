@@ -81,12 +81,12 @@ class Home extends React.Component<HomeProps, HomeState> {
                         <div style={this.styles.topText} >Το WellnessLab σας ενημερώνει για θέματα σωματικής υγείας και πώς αυτά επηρεάζουν την ψυχική μας υγεία. Προωθεί την προσωπική και συλλογική ευημερία και στοχεύει στην παροχή υποστήριξης σε ζητήματα που αφορούν τη σωματική και ψυχική ευεξία.</div>
                     </div>
                     <div style={{padding: 10}}>
-                        <Typography use="headline5" style={{fontWeight: 100, marginLeft: 10}}>Βρείτε μας στα</Typography>
+                        <Typography use="headline5" style={{fontWeight: 100, marginLeft: 10}}>Βρείτε μας εδώ</Typography>
                         <div style={this.styles.socialMediaContainer}>{this.socialItems}</div>
                     </div>
                 </div>
                 <div style={this.styles.rightSide}>
-                    <Typography style={this.styles.topText} use="headline4">Διαβάστε για το τελευταίο μας θέμα</Typography>
+                    <Typography style={this.styles.topText} use="headline4">Διαβάστε σχετικά<br/>με το τελευταίο μας θέμα</Typography>
                     <div style={this.styles.itemCardContainer}>
                         <WellnessCard width={300} height={500} borderRadius={this.cardRadius} onCardClick={this.openSubject}>
                             <div style={this.styles.articleCard}>

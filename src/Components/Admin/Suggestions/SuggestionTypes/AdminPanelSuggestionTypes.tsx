@@ -5,6 +5,9 @@ import WellnessCard from "../../../CustomUIComponents/WellnessCard/WellnessCard"
 
 import plus from '../../../../Images/plus.png'
 import {ADMIN_SUGGESTIONS } from "../../../../Entities/AppRoutes";
+import {Button, TopAppBar, TopAppBarFixedAdjust, TopAppBarRow, TopAppBarSection, TopAppBarTitle} from "rmwc";
+import {wellnessLabPrimary} from "../../../../Entities/Colors";
+import logoWhite from "../../../../Images/logo_white.png";
 
 type AdminPanelSuggestionTypesProps = {
     history: any
@@ -40,19 +43,6 @@ class AdminPanelSuggestionTypes extends React.Component<AdminPanelSuggestionType
     render() {
         const suggestionTypeItems: JSX.Element[]= [];
 
-        suggestionTypeItems.push(
-            <div style={this.styles.itemCardContainer}>
-                <WellnessCard width={200} height={200} borderRadius={15} onCardClick={() => {this.onCardClick("-1")}}>
-                    <div style={this.styles.articleCard}>
-                        <div style={Object.assign({background: 'url('+plus+') center / contain'}, this.styles.articleImage)} ></div>
-                        <div style={this.styles.articleTitleContainer}>
-                            <p style={this.styles.articleTitleText}>{"Δημιουργία νέου Suggestion type"}</p>
-                        </div>
-                    </div>
-                </WellnessCard>
-            </div>
-        );
-
         for (let i=0; i<this.state.suggestionTypes.length; i++) {
             suggestionTypeItems.push(
                 <div style={this.styles.itemCardContainer}>
@@ -69,11 +59,20 @@ class AdminPanelSuggestionTypes extends React.Component<AdminPanelSuggestionType
         }
 
         return (
-            <div style={this.styles.app}>
-                <div style={this.styles.container}>
-                    <div style={this.styles.toolbar}>
-                    </div>
-
+            <div style={this.styles.container}>
+                <div>
+                    <TopAppBar fixed style={{backgroundColor: wellnessLabPrimary}}>
+                        <TopAppBarRow>
+                            <TopAppBarSection>
+                                <img alt={"Logo"} src={logoWhite} style={this.styles.logo}/>
+                                <TopAppBarTitle>WellnessLab - ΛΙΣΤΑ SUGGESTION TYPES</TopAppBarTitle>
+                            </TopAppBarSection>
+                            <TopAppBarSection alignEnd>
+                                <Button style={{color: 'white'}} label={"ΔΗΜΙΟΥΡΓΙΑ ΝΕΟΥ SUGGESTION TYPE"} onClick={() => {this.onCardClick("-1")}}/>
+                            </TopAppBarSection>
+                        </TopAppBarRow>
+                    </TopAppBar>
+                    <TopAppBarFixedAdjust />
                     <div style={this.styles.dataUI}>
                         {suggestionTypeItems}
                     </div>
@@ -83,10 +82,13 @@ class AdminPanelSuggestionTypes extends React.Component<AdminPanelSuggestionType
     }
 
     styles = {
+        container: {flex: 1, backgroundColor: '#F7F7F7', height: '100vh'},
+        introText: {fontWeight: 400, padding: 20, fontSize: 25, textAlign: 'center' as 'center'},
+        dataUI: {display: 'flex', flexGrow: 1, flexDirection: 'row' as 'row',  flexWrap: 'wrap' as 'wrap'},
+        logo: {width: 40, height: 40, marginRight: 20 },
+
         app: { width: '100vw', height: '100vh', display: 'flex'},
-        container: {display: 'flex', flexGrow: 1, flexDirection: 'column' as 'column'},
         toolbar: {display: 'flex', height: '10vh', backgroundColor: 'rgb(99,148,140)'},
-        dataUI: {display: 'flex', flexGrow: 1, height: '90vh', flexDirection: 'row' as 'row' },
         articlesContainer: {width: '75%', flexDirection: 'row' as 'row', display: 'flex', flexWrap: 'wrap' as 'wrap', marginLeft: 'auto', marginRight: 'auto'},
         itemCardContainer: {flexGrow: 1, padding: '10px', display: 'flex', flexDirection: 'column' as 'column', justifyContent: 'center' as 'center', alignItems: 'center' as 'center'},
         articleCard: { width: '200px', height: '200px',display: "flex", flexDirection: 'column' as 'column', backgroundColor: 'white' },

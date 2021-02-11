@@ -21,17 +21,18 @@ import MultiImageInput from "react-multiple-image-input";
 import {wellnessLabPrimary} from "../../../Entities/Colors";
 import logoWhite from "../../../Images/logo_white.png";
 import { ADMIN_SUBJECTS } from "../../../Entities/AppRoutes";
+import empty from "firebase/empty-import";
 
 type SubjectDetailsProps = {
-    history: any
+    history: any,
+    alert: (title: string, message: string, yesBtn: string, noBtn: string, action: (yes: boolean) => void) => void
 }
 
 type SubjectDetailsState = {
     subject: Subject,
     tipsImages: string[],
     articleImage: string[],
-    subjectImage: string[],
-    deleteAlertOpen: boolean
+    subjectImage: string[]
 }
 
 
@@ -41,12 +42,10 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
         super(props, state);
 
         let subjectObj: Subject = JSON.parse(JSON.stringify(emptySubject))
-        this.state = {subject: subjectObj, tipsImages: [], articleImage: [], subjectImage: [], deleteAlertOpen: false}
+        this.state = {subject: subjectObj, tipsImages: [], articleImage: [], subjectImage: []}
 
         this.createUpdateSubject = this.createUpdateSubject.bind(this)
         this.showDeleteSubjectDialog = this.showDeleteSubjectDialog.bind(this)
-        this.deleteActiveSubject = this.deleteActiveSubject.bind(this)
-
     }
 
     componentDidMount() {
@@ -77,22 +76,19 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
     }
 
     private showDeleteSubjectDialog() {
-        this.setState({deleteAlertOpen: true})
-    }
-
-    private deleteActiveSubject(shouldDelete: boolean) {
-        this.setState({deleteAlertOpen: false})
-        if(shouldDelete) {
-            deleteSubject(this.state.subject.id)
-                .then((result) => {
-                    console.log(result)
-                    window.location.reload(false)
-                })
-                .catch((error) => {
-                    console.log(error)
-                    window.location.reload(false)
-                })
-        }
+        this.props.alert("Διαγραφή", "Αυτό το θέμα θα διαγραφεί οριστικά.", "ΔΙΑΓΡΑΦΗ", "ΑΚΥΡΟ", (del: boolean) => {
+            if(del) {
+                deleteSubject(this.state.subject.id)
+                    .then((result) => {
+                        alert('Το θέμα διαγράφηκε επιτυχώς')
+                        this.props.history.goBack()
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                        window.location.reload(false)
+                    })
+            }
+        })
     }
 
     private createUpdateSubject() {
@@ -134,8 +130,9 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
             updateSubject(updatedSubject)
                 .then((result) => {
                     console.log(result)
-                    alert('Success')
-                    window.location.reload(false)
+                    alert('Το θέμα επεξεργάστηκε επιτυχώς')
+                    this.props.history.goBack()
+                    //window.location.reload(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -149,8 +146,9 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
             createSubject(updatedSubject)
                 .then((result) => {
                     console.log(result)
-                    alert('success')
-                    window.location.reload(false)
+                    alert('Το θέμα δημιουργήθηκε επιτυχώς')
+                    this.props.history.goBack()
+                    //window.location.reload(false)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -174,7 +172,7 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
                         <TopAppBarRow>
                             <TopAppBarSection>
                                 <img alt={"Logo"} src={logoWhite} style={this.styles.logo}/>
-                                <TopAppBarTitle>WellnessLab</TopAppBarTitle>
+                                <TopAppBarTitle>WellnessLab - { this.state.subject !== emptySubject ? "ΕΠΕΞΕΡΓΑΣΙΑ" : "ΔΗΜΙΟΥΡΓΙΑ"} ΘΕΜΑΤΟΣ</TopAppBarTitle>
 
 
                             </TopAppBarSection>
@@ -284,13 +282,12 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
                             </div>
                         </ul>
 
-                        <ul>
-                            <Button label={"SUGGESTIONS"} onClick={(e) => {this.goToSuggestions()}}/>
-                        </ul>
+                        {
+                            this.state.subject !== emptySubject ? <ul> <Button label={"SUGGESTIONS"} onClick={(e) => {this.goToSuggestions()}}/> </ul> : null
+                        }
+
                     </div>
                 </div>
-
-
             </div>
         )
     }

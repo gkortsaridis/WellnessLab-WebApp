@@ -37,8 +37,17 @@ import AdminPanelSeminarsList from "./Admin/Seminars/AdminPanelSeminarsList";
 import AdminPanelSeminarEdit from "./Admin/Seminars/AdminPanelSeminarEdit";
 import AdminPanelHealthExperiencesList from "./Admin/HealthExperiences/AdminPanelHealthExperiencesList";
 import AdminPanelHealthExperienceEdit from "./Admin/HealthExperiences/AdminPanelHealthExperienceEdit";
+import {Dialog, DialogActions, DialogButton, DialogContent, DialogTitle} from "rmwc";
 
-type WellnessLabAppState = { renderFlag: boolean }
+type WellnessLabAppState = {
+    renderFlag: boolean,
+    alertOpen: boolean,
+    alertTitle: string,
+    alertMsg: string,
+    yesBtn: string,
+    noBtn: string,
+    action: (yes: boolean) => void
+}
 
 const firebaseConfigPROD = {
     apiKey: "AIzaSyDY9zLRl7EOpKR02SWCGpwW2jkrh-YU2uY",
@@ -70,7 +79,17 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
         console.log("Localhost : ", window.location.hostname)
 
         this.onPageSelected = this.onPageSelected.bind(this)
-        this.state = { renderFlag : false }
+        this.state = {
+            renderFlag : false,
+            alertOpen: false,
+            alertTitle: "",
+            alertMsg: "",
+            yesBtn: "",
+            noBtn: "",
+            action: (yes: boolean) => {}
+        }
+
+        this.showAlert = this.showAlert.bind(this)
 
         // Initialize Firebase
         if (!firebase.apps.length) { firebase.initializeApp(this.isLocalhost() ? firebaseConfigDEV : firebaseConfigPROD) }
@@ -92,112 +111,149 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
         }
     }
 
+    showAlert(title: string, message: string, yesBtn: string, noBtn: string, action: (yes: boolean) => void) {
+        this.setState({
+            alertOpen: true,
+            alertTitle: title,
+            alertMsg: message,
+            yesBtn: yesBtn,
+            noBtn: noBtn,
+            action: action
+        })
+    }
+
     render() {
         console.log("LOCATION: ",this.appHistory.location)
         return (
-            <Router history={this.appHistory}>
-                <Switch>
-                    <Route exact path={HOME}>
-                        <div style={this.styles.container}>
-                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Home history={this.appHistory}/>
-                        </div>
-                    </Route>
+            <div>
+                <Router history={this.appHistory}>
+                    <Switch>
+                        <Route exact path={HOME}>
+                            <div style={this.styles.container}>
+                                <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Home history={this.appHistory}/>
+                            </div>
+                        </Route>
 
-                    <Route exact path={SUBJECTS}>
-                        <div style={this.styles.container}>
-                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Subjects history={this.appHistory}/>
-                        </div>
-                    </Route>
+                        <Route exact path={SUBJECTS}>
+                            <div style={this.styles.container}>
+                                <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Subjects history={this.appHistory}/>
+                            </div>
+                        </Route>
 
-                    <Route exact path={SUBJECT_DETAILS}>
-                        <div style={this.styles.container}>
-                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <SubjectDetails history={this.appHistory}/>
-                        </div>
-                    </Route>
+                        <Route exact path={SUBJECT_DETAILS}>
+                            <div style={this.styles.container}>
+                                <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <SubjectDetails history={this.appHistory}/>
+                            </div>
+                        </Route>
 
-                    <Route exact path={ACTIONS}>
-                        <div style={this.styles.container}>
-                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Actions history={this.appHistory}/>
-                        </div>
-                    </Route>
+                        <Route exact path={ACTIONS}>
+                            <div style={this.styles.container}>
+                                <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Actions history={this.appHistory}/>
+                            </div>
+                        </Route>
 
-                    <Route exact path={HEALTH_EXPERIENCES}>
-                        <div style={this.styles.container}>
-                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <HealthExperiences history={this.appHistory}/>
-                        </div>
-                    </Route>
+                        <Route exact path={HEALTH_EXPERIENCES}>
+                            <div style={this.styles.container}>
+                                <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <HealthExperiences history={this.appHistory}/>
+                            </div>
+                        </Route>
 
-                    <Route exact path={SEMINARS}>
-                        <div style={this.styles.container}>
-                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Seminars history={this.appHistory}/>
-                        </div>
-                    </Route>
+                        <Route exact path={SEMINARS}>
+                            <div style={this.styles.container}>
+                                <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Seminars history={this.appHistory}/>
+                            </div>
+                        </Route>
 
-                    <Route exact path={TV_INTERVIEW}>
-                        <div style={this.styles.container}>
-                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <TVInterview/>
-                        </div>
-                    </Route>
+                        <Route exact path={TV_INTERVIEW}>
+                            <div style={this.styles.container}>
+                                <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <TVInterview/>
+                            </div>
+                        </Route>
 
-                    <Route exact path={VIDEOS}>
-                        <div style={this.styles.container}>
-                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Videos/>
-                        </div>
-                    </Route>
+                        <Route exact path={VIDEOS}>
+                            <div style={this.styles.container}>
+                                <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Videos/>
+                            </div>
+                        </Route>
 
-                    <Route exact path={TEAM}>
-                        <div style={this.styles.container}>
-                            <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Team/>
-                        </div>
-                    </Route>
+                        <Route exact path={TEAM}>
+                            <div style={this.styles.container}>
+                                <WLToolbar activePage={this.appHistory.location.pathname} onPageSelected={this.onPageSelected}/> <Team/>
+                            </div>
+                        </Route>
 
-                    <Route exact path={ADMIN}>
-                        <AdminPanel history={this.appHistory}/>
-                    </Route>
+                        <Route exact path={ADMIN}>
+                            <AdminPanel history={this.appHistory}/>
+                        </Route>
 
-                    <Route exact path={ADMIN_SUBJECTS}>
-                        <AdminPanelSubjectsList history={this.appHistory}/>
-                    </Route>
+                        <Route exact path={ADMIN_SUBJECTS}>
+                            <AdminPanelSubjectsList history={this.appHistory}/>
+                        </Route>
 
-                    <Route exact path={ADMIN_SUGGESTIONS}>
-                        <AdminPanelSuggestionTypes history={this.appHistory}/>
-                    </Route>
+                        <Route exact path={ADMIN_SUGGESTIONS}>
+                            <AdminPanelSuggestionTypes history={this.appHistory}/>
+                        </Route>
 
-                    <Route exact path={ADMIN_SUGGESTION}>
-                        <AdminPanelSuggestionType history={this.appHistory}/>
-                    </Route>
+                        <Route exact path={ADMIN_SUGGESTION}>
+                            <AdminPanelSuggestionType history={this.appHistory} alert={this.showAlert}/>
+                        </Route>
 
 
-                    <Route exact path={ADMIN_SUBJECT_EDIT}>
-                        <AdminPanelSubjectEditing history={this.appHistory}/>
-                    </Route>
+                        <Route exact path={ADMIN_SUBJECT_EDIT}>
+                            <AdminPanelSubjectEditing history={this.appHistory} alert={this.showAlert}/>
+                        </Route>
 
-                    <Route exact path={ADMIN_SUBJECT_EDIT_SUGGESTIONS}>
-                        <AdminPanelSubjectEditingSuggestions history={this.appHistory}/>
-                    </Route>
+                        <Route exact path={ADMIN_SUBJECT_EDIT_SUGGESTIONS}>
+                            <AdminPanelSubjectEditingSuggestions history={this.appHistory}/>
+                        </Route>
 
-                    <Route exact path={ADMIN_SEMINARS}>
-                        <AdminPanelSeminarsList history={this.appHistory}/>
-                    </Route>
+                        <Route exact path={ADMIN_SEMINARS}>
+                            <AdminPanelSeminarsList history={this.appHistory}/>
+                        </Route>
 
-                    <Route exact path={ADMIN_SEMINARS_EDIT}>
-                        <AdminPanelSeminarEdit history={this.appHistory}/>
-                    </Route>
+                        <Route exact path={ADMIN_SEMINARS_EDIT}>
+                            <AdminPanelSeminarEdit history={this.appHistory} alert={this.showAlert}/>
+                        </Route>
 
-                    <Route exact path={ADMIN_HEALTH_EXPERIENCES}>
-                        <AdminPanelHealthExperiencesList history={this.appHistory}/>
-                    </Route>
+                        <Route exact path={ADMIN_HEALTH_EXPERIENCES}>
+                            <AdminPanelHealthExperiencesList history={this.appHistory}/>
+                        </Route>
 
-                    <Route exact path={ADMIN_HEALTH_EXPERIENCES_EDIT}>
-                        <AdminPanelHealthExperienceEdit history={this.appHistory}/>
-                    </Route>
+                        <Route exact path={ADMIN_HEALTH_EXPERIENCES_EDIT}>
+                            <AdminPanelHealthExperienceEdit history={this.appHistory} alert={this.showAlert}/>
+                        </Route>
 
-                    <Route path="*">
-                        <UIv1 history={this.appHistory}/>
-                    </Route>
+                        <Route path="*">
+                            <UIv1 history={this.appHistory}/>
+                        </Route>
 
-                </Switch>
-            </Router>
+                    </Switch>
+                </Router>
+
+                <Dialog
+                    open={this.state.alertOpen}
+                    onClose={evt => {
+                        this.state.action(evt.detail.action === "yes")
+
+                        this.setState({
+                            renderFlag : false,
+                            alertOpen: false,
+                            alertTitle: "",
+                            alertMsg: "",
+                            yesBtn: "",
+                            noBtn: "",
+                            action: (yes: boolean) => {}
+                        })
+
+                    }}>
+                    <DialogTitle>{this.state.alertTitle}</DialogTitle>
+                    <DialogContent>{this.state.alertMsg}</DialogContent>
+                    <DialogActions>
+                        <DialogButton action="no">{this.state.noBtn}</DialogButton>
+                        <DialogButton action="yes" isDefaultAction>{this.state.yesBtn}</DialogButton>
+                    </DialogActions>
+                </Dialog>
+            </div>
         )
     }
 
