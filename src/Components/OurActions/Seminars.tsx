@@ -38,7 +38,7 @@ class Seminars extends React.Component<SeminarsProps, SeminarsState> {
             var seminar = this.state.seminars[i]
             var seminarCard = (
                 <div>
-                    <div style={{display: 'flex', flexGrow: 1, height: '600px', width: '500px', alignItems: 'center', justifyContent: 'center'}} >
+                    <div style={this.styles.seminarCardContainer} >
                         <WellnessCardSeminar seminar={seminar} />
                     </div>
                 </div>
@@ -58,7 +58,8 @@ class Seminars extends React.Component<SeminarsProps, SeminarsState> {
     styles = {
         container: {flex: 1, backgroundColor: '#F7F7F7'},
         introText: {fontWeight: 100, paddingLeft: 20},
-        seminarsContainer: {width: isMobile ? '100%' : '75%', flexDirection: 'row' as 'row', display: 'flex', flexWrap: 'wrap' as 'wrap', marginLeft: 'auto', marginRight: 'auto', justifyContent: 'center' as 'center'},
+        seminarCardContainer: {display: 'flex', flexGrow: 1, height: '600px', width: isMobile ? '100%' : '500px', alignItems: 'center', justifyContent: 'center'},
+        seminarsContainer: {width: isMobile ? '100%' : '75%', flexDirection: isMobile ? 'column' as 'column' : 'row' as 'row', display: 'flex', flexWrap: 'wrap' as 'wrap', marginLeft: 'auto', marginRight: 'auto', justifyContent: 'center' as 'center'},
     }
 }
 

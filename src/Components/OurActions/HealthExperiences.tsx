@@ -37,7 +37,7 @@ class HealthExperiences extends React.Component<HealthExperiencesProps, HealthEx
             const healthExperience = this.state.healthExperiences[i];
             const healthExperienceCard = (
                 <div>
-                    <div style={{display: 'flex', flexGrow: 1, height: '600px', width: '500px', alignItems: 'center', justifyContent: 'center'}}>
+                    <div style={this.styles.healthExperienceCardContainer}>
                         <WellnessCardHealthExperience healthExperience={healthExperience}/>
                     </div>
                 </div>
@@ -57,6 +57,7 @@ class HealthExperiences extends React.Component<HealthExperiencesProps, HealthEx
     styles = {
         container: {flex: 1, backgroundColor: '#F7F7F7'},
         introText: {fontWeight: 100, paddingLeft: 20},
+        healthExperienceCardContainer: {display: 'flex', flexGrow: 1, height: '600px', width: isMobile ? '100%' : '500px', alignItems: 'center', justifyContent: 'center'},
         healthExperiencesContainer: {width: isMobile ? '100%' : '75%', flexDirection: 'row' as 'row', display: 'flex', flexWrap: 'wrap' as 'wrap', marginLeft: 'auto', marginRight: 'auto', justifyContent: 'center' as 'center'},
     }
 }
