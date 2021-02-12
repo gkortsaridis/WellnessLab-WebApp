@@ -1,6 +1,6 @@
 import * as React from 'react';
 import firebase from 'firebase/app';
-
+import 'firebase/analytics';
 
 import {Router, Switch, Route } from "react-router-dom";
 
@@ -95,7 +95,11 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
         if (!firebase.apps.length) { firebase.initializeApp(this.isLocalhost() ? firebaseConfigDEV : firebaseConfigPROD) }
         else { firebase.app(); }
 
+        firebase.analytics().setAnalyticsCollectionEnabled(true)
+
         this.appHistory.listen((listener) => {
+            firebase.analytics().setCurrentScreen(window.location.pathname)
+            firebase.analytics().logEvent("openedPage", {page: window.location.pathname})
             this.setState({ renderFlag: !this.state.renderFlag })
         })
     }
