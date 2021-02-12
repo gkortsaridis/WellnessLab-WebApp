@@ -1,11 +1,13 @@
 import * as React from 'react';
 import {wellnessLabPrimary} from "../../Entities/Colors";
 import {isMobile} from "react-device-detect";
-import WellnessCard from "../CustomUIComponents/WellnessCard/WellnessCard";
-import ReactCardFlip from "react-card-flip";
 import {HealthExperience} from "../../Entities/Entities";
 import {getAllHealthExperiences} from "../../Repositories/HealthExperiencesRepository";
 import WellnessCardHealthExperience from "../CustomUIComponents/WellnessCardHealthExperience";
+import {urlify} from "../../Repositories/UIRepository";
+import ReactHtmlParser from "react-html-parser";
+
+const staticText = require('../ConfigurableData/staticText.json')
 
 type HealthExperiencesProps = {
     history: any
@@ -48,7 +50,7 @@ class HealthExperiences extends React.Component<HealthExperiencesProps, HealthEx
         return (
             <div style={this.styles.container}>
                 <h2 style={{color: wellnessLabPrimary, fontWeight: 400, paddingTop: 20, paddingLeft: 20}}>Εμπειρίες Υγείας</h2>
-                <h3 style={this.styles.introText}> Μοιράσου και εσύ τη δική σου εμπειρία υγείας ανώνυμα, συμπληρώνοντας την παρακάτω <a target="_blank" href={"https://forms.gle/5jbZK3NRPLDWhdrn9"} rel="noopener noreferrer">φόρμα</a></h3>
+                <h3 style={this.styles.introText}>{ReactHtmlParser(staticText.healthExperiencesText)}</h3>
                 <div style={this.styles.healthExperiencesContainer}> {healthExperienceItems} </div>
             </div>
         )

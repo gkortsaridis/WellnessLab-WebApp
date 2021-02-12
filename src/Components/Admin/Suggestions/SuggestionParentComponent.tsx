@@ -5,6 +5,7 @@ import deleteImg from '../../../Images/deleteIcon.png'
 import {TextField} from "@material-ui/core";
 import {SuggestionParent} from "../../../Entities/Entities";
 import ReactHtmlParser from 'react-html-parser';
+import {urlify} from "../../../Repositories/UIRepository";
 
 type SuggestionParentProp = {
     edit: boolean
@@ -19,13 +20,6 @@ class SuggestionParentComponent extends React.Component<SuggestionParentProp, Su
 
     constructor(props: SuggestionParentProp, state: SuggestionParentState) {
         super(props, state);
-    }
-
-    urlify(text: string) {
-        var urlRegex = /(https?:\/\/[^\s]+)/g;
-        return text.replace(urlRegex, function(url) {
-            return '<a href="' + url + '">' + url + '</a>';
-        })
     }
 
     render() {
@@ -77,7 +71,7 @@ class SuggestionParentComponent extends React.Component<SuggestionParentProp, Su
                                                         this.props.onSuggestionParentChanged(suggestionParent)
                                                     }}
                                                 />
-                                                : <div>- {ReactHtmlParser(this.urlify(suggestionTxt))}</div>
+                                                : <div>- {ReactHtmlParser(urlify(suggestionTxt))}</div>
                                         }
                                     </div>
 

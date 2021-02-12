@@ -21,6 +21,7 @@ type HomeState = { latestSubject: Subject }
 type HomeProps = { history: any }
 
 const socialMedia = require('../ConfigurableData/social.json')
+const staticText = require('../ConfigurableData/staticText.json')
 
 class Home extends React.Component<HomeProps, HomeState> {
 
@@ -80,7 +81,7 @@ class Home extends React.Component<HomeProps, HomeState> {
             <div style={this.styles.container}>
                 <div style={this.styles.leftSide}>
                     <div style={this.styles.topTextContainer}>
-                        <div style={this.styles.topText} >Το WellnessLab σας ενημερώνει για θέματα σωματικής υγείας και πώς αυτά επηρεάζουν την ψυχική μας υγεία. Προωθεί την προσωπική και συλλογική ευημερία και στοχεύει στην παροχή υποστήριξης σε ζητήματα που αφορούν τη σωματική και ψυχική ευεξία.</div>
+                        <div style={this.styles.topText} >{staticText.welcomeText}</div>
                     </div>
                     <div style={this.styles.findUsContainer}>
                         <Typography use="headline5" style={{fontWeight: 100, marginLeft: 10}}>Βρείτε μας εδώ</Typography>
@@ -112,7 +113,7 @@ class Home extends React.Component<HomeProps, HomeState> {
         },
         topTextContainer: {display: 'flex',  flexGrow: 1, alignItems: 'center' as 'center', justifyContent: 'center' as 'center', textAlign: 'center' as 'center', marginTop: isMobile ? 20 : 0},
         topText: {fontWeight: 100, textAlign: 'center' as 'center', fontSize: isMobile ? 30 : 35},
-        topTextSubject: {fontWeight: 100, textAlign: 'center' as 'center', fontSize: isMobile ? 23 : 35},
+        topTextSubject: {fontWeight: 100, textAlign: 'center' as 'center', fontSize: isMobile ? 23 : 28},
         leftSide: {display: 'flex', width: isMobile ? '95%' : '70%', flexDirection: 'column' as 'column', height: '100%'},
         rightSide: {display: 'flex', width: isMobile ? '95%' : '30%', height: '100%', flexDirection: 'column' as 'column', justifyContent: 'center' as 'center', alignItems: 'center' as 'center'},
         findUsContainer: {padding: isMobile ? 0 : 10, display: 'flex', flexDirection: 'column' as 'column', alignItems: isMobile ? 'center' : 'start', marginTop: isMobile ? 20 : 0},

@@ -79,7 +79,7 @@ class SubjectDetails extends React.Component<SubjectDetailsProps, SubjectDetails
                         <WellnessCard width={'80%'} height={500} borderRadius={this.cardRadius} disableMove disabled={this.state.subject.tips.length === 0}>
                             {
                                 this.state.subject.tips.length > 0
-                                    ? <Slide style={this.styles.slideContainer} easing="ease">
+                                    ? <Slide style={this.styles.slideContainer} easing="ease" infinite={false}>
                                         {
                                             this.state.subject.tips.map((tip: string) =>
                                                 <Palette src={tip}>

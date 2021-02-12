@@ -7,6 +7,8 @@ import ioanna from "../../Images/ioanna_koutsiona.png";
 import {TeamMember} from "../../Entities/Entities";
 import WellnessTeamCard from "../CustomUIComponents/WellnessTeamCard/WellnessTeamCard";
 
+const staticText = require('../ConfigurableData/staticText.json')
+
 class Team extends React.Component<{ }, {}> {
 
     private team: TeamMember[] = []
@@ -65,12 +67,12 @@ class Team extends React.Component<{ }, {}> {
                     url: "https://www.facebook.com/profile.php?id=100005508162148"
                 },
                 {
-                    name: "instagram",
-                    url: "https://www.instagram.com/maria_dmtr/"
-                },
-                {
                     name: "mail",
                     url: "mailto:dimitriadoumaria00@gmail.com"
+                },
+                {
+                    name: "instagram",
+                    url: "https://www.instagram.com/maria_dmtr/"
                 }
             ]
         })
@@ -85,12 +87,12 @@ class Team extends React.Component<{ }, {}> {
                     url: "https://www.facebook.com/profile.php?id=100019096519794"
                 },
                 {
-                    name: "mail",
-                    url: "mailto:geopantazi96@gmail.com\n"
-                },
-                {
                     name: "linkedin",
                     url: "https://www.linkedin.com/in/georgia-pantazi-6072a3200/"
+                },
+                {
+                    name: "mail",
+                    url: "mailto:geopantazi96@gmail.com\n"
                 }
             ]
         })
@@ -105,12 +107,12 @@ class Team extends React.Component<{ }, {}> {
                     url: "https://www.facebook.com/profile.php?id=100000424791709"
                 },
                 {
-                    name: "instagram",
-                    url: "https://www.instagram.com/ioannakoutsiona/"
-                },
-                {
                     name: "linkedin",
                     url: "https://www.linkedin.com/in/ioanna-koutsiona-529797193?fbclid=IwAR2K7zJCylS4lNfR1Yimq0wno-gidwbC4K6vAphs1KvNRKvjdtsvlDSsRRE"
+                },
+                {
+                    name: "mail",
+                    url: "mailto:ioanna_koutsiona@hotmail.com"
                 }
             ]
         })
@@ -138,7 +140,7 @@ class Team extends React.Component<{ }, {}> {
 
         return (
             <div style={this.styles.container}>
-                <h3 style={this.styles.introText}>Αυτό είναι ένα σύντομο κείμενο που θα περιγραφει την ομάδα </h3>
+                <h3 style={this.styles.introText}>{staticText.teamText}</h3>
                 <div style={this.styles.cardsContainer}> {teamLeaders} </div>
                 <div style={this.styles.cardsContainer}> {team} </div>
             </div>

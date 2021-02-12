@@ -1,14 +1,16 @@
 import * as React from 'react';
-import WellnessCard from "../CustomUIComponents/WellnessCard/WellnessCard";
 
 import {getAllSubjects} from "../../Repositories/SubjectsRepository";
 import {Subject} from "../../Entities/Entities";
 import {SUBJECTS} from "../../Entities/AppRoutes";
 import {isMobile} from "react-device-detect";
 import WellnessCardSubject from "../CustomUIComponents/WellnessCardSubject";
+import ReactHtmlParser from "react-html-parser";
 
 type OurSubjectsState = { subjects: Subject[] }
 type OurSubjectProps = { history: any }
+
+const staticText = require('../ConfigurableData/staticText.json')
 
 class Subjects extends React.Component<OurSubjectProps, OurSubjectsState> {
 
@@ -44,7 +46,7 @@ class Subjects extends React.Component<OurSubjectProps, OurSubjectsState> {
 
         return (
             <div style={this.styles.container}>
-                <h3 style={this.styles.introText}>Αυτό είναι ένα σύντομο κείμενο που θα περιγραφει τα θέματα</h3>
+                <h3 style={this.styles.introText}>{staticText.subjectsText} <br/> {ReactHtmlParser(staticText.subjectsGuestText)}</h3>
                 <div style={this.styles.articlesContainer}> {articleItems} </div>
             </div>
         )

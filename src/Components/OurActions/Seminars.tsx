@@ -3,9 +3,9 @@ import {Seminar} from "../../Entities/Entities";
 import {getAllSeminars} from "../../Repositories/SeminarsRepository";
 import {wellnessLabPrimary} from "../../Entities/Colors";
 import {isMobile} from "react-device-detect";
-import WellnessCard from "../CustomUIComponents/WellnessCard/WellnessCard";
-import ReactCardFlip from "react-card-flip";
 import WellnessCardSeminar from "../CustomUIComponents/WellnessCardSeminar";
+
+const staticText = require('../ConfigurableData/staticText.json')
 
 type SeminarsProps = {
     history: any
@@ -49,7 +49,7 @@ class Seminars extends React.Component<SeminarsProps, SeminarsState> {
         return (
             <div style={this.styles.container}>
                 <h2 style={{color: wellnessLabPrimary, fontWeight: 400, paddingTop: 20, paddingLeft: 20}}>Σεμινάρια</h2>
-                <h3 style={this.styles.introText}> Σύντομο κείμενο για τα σεμινάρια </h3>
+                <h3 style={this.styles.introText}>{staticText.seminarsText}</h3>
                 <div style={this.styles.seminarsContainer}> {seminarItems} </div>
             </div>
         )

@@ -29,7 +29,7 @@ class WLToolbarBrowser extends React.Component<WLToolbarProps, {}> {
                     <TopAppBarRow>
                         <TopAppBarSection>
                             <img alt={"Logo"} src={logoWhite} style={this.stylesBrowser.logo}/>
-                            <TopAppBarTitle>WellnessLab</TopAppBarTitle>
+                            <TopAppBarTitle style={this.stylesBrowser.siteName}>WellnessLab</TopAppBarTitle>
                         </TopAppBarSection>
                     </TopAppBarRow>
                     <TopAppBarRow>
@@ -48,7 +48,8 @@ class WLToolbarBrowser extends React.Component<WLToolbarProps, {}> {
 
     stylesBrowser = {
         container: {backgroundColor: '#63948C', backgroundSize: 'cover', display: 'flex', flexDirection: 'column' as 'column', paddingBottom: 64},
-        logo: {width: 40, height: 40, marginRight: 20 },
+        logo: {width: 60, height: 60, marginRight: 20 },
+        siteName: {fontSize: 25}
     }
 }
 

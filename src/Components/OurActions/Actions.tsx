@@ -7,6 +7,8 @@ import health_experiences from '../../Images/health_experiences.png'
 import seminars from '../../Images/seminars.png'
 import tvInterview from '../../Images/tv_interview.png'
 
+const staticText = require('../ConfigurableData/staticText.json')
+
 type ActionsProps = { history: any}
 
 class Actions extends React.Component<ActionsProps, {}> {
@@ -37,7 +39,7 @@ class Actions extends React.Component<ActionsProps, {}> {
     render() {
         return (
             <div style={this.styles.container}>
-                <h3 style={this.styles.introText}>Αυτό είναι ένα σύντομο κείμενο που θα περιγραφει τις δράσεις</h3>
+                <h3 style={this.styles.introText}>{staticText.actionsText}</h3>
                 <div style={isMobile ? this.styles.dataContainerMobile : this.styles.dataContainer}>
                     <div style={isMobile ? this.styles.articleDivMobile : this.styles.articleDiv}>
                         <WellnessCard width={'80%'} height={500} borderRadius={this.cardRadius} disableMove onCardClick={this.goToHealthExperiences}>
