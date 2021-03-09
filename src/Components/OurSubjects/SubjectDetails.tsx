@@ -95,7 +95,7 @@ class SubjectDetails extends React.Component<SubjectDetailsProps, SubjectDetails
                                     </Slide>
                                     : <div style={this.styles.noSuggestionsContainer}>
                                         <img alt={"No tips icon"} src={tips} style={this.styles.noContentIcon}/>
-                                        <div style={this.styles.noContentTxt}>Δεν υπάρχουν tips για αυτό το θέμα ακόμα. Επισκευτείτε μας ξανά σε λίγες μέρες.</div>
+                                        <div style={this.styles.noContentTxt}>Δεν υπάρχουν tips για αυτό το θέμα ακόμα. Επισκεφθείτε μας ξανά σε λίγες μέρες.</div>
                                     </div>
                             }
                         </WellnessCard>
@@ -124,7 +124,7 @@ class SubjectDetails extends React.Component<SubjectDetailsProps, SubjectDetails
                                     </div>
                                     : <div style={this.styles.noSuggestionsContainer}>
                                         <img alt={"No suggestions icon"} src={suggestions} style={this.styles.noContentIcon}/>
-                                        <div style={this.styles.noContentTxt}>Δεν υπάρχουν suggestions για αυτό το θέμα ακόμα. Επισκευτείτε μας ξανά σε λίγες μέρες.</div>
+                                        <div style={this.styles.noContentTxt}>Δεν υπάρχουν suggestions για αυτό το θέμα ακόμα. Επισκεφθείτε μας ξανά σε λίγες μέρες.</div>
                                     </div>
                             }
 

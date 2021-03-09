@@ -65,7 +65,7 @@ class AdminPanelHealthExperiencesList extends React.Component<AdminPanelHealthEx
                                 <TopAppBarTitle>WellnessLab  - ΛΙΣΤΑ ΕΜΠΕΙΡΙΩΝ ΥΓΕΙΑΣ</TopAppBarTitle>
                             </TopAppBarSection>
                             <TopAppBarSection alignEnd>
-                                <Button style={{color: 'white'}} label={"ΔΗΜΙΟΥΡΓΙΑ ΣΕΜΙΝΑΡΙΟΥ"} onClick={() => {this.goToHealthExperienceEdit("-1")}}/>
+                                <Button style={{color: 'white'}} label={"ΔΗΜΙΟΥΡΓΙΑ ΕΜΠΕΙΡΙΑΣ ΥΓΕΙΑΣ"} onClick={() => {this.goToHealthExperienceEdit("-1")}}/>
                             </TopAppBarSection>
                         </TopAppBarRow>
                     </TopAppBar>
