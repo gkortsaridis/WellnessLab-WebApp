@@ -29,6 +29,7 @@ class Subjects extends React.Component<OurSubjectProps, OurSubjectsState> {
     }
 
     private clickedLink(link: string) {
+        console.log("CLICK!!")
         const appHistory = this.props.history
         appHistory.push(SUBJECTS+"/"+link)
     }
@@ -37,7 +38,7 @@ class Subjects extends React.Component<OurSubjectProps, OurSubjectsState> {
         const articleItems: JSX.Element[]= [];
         for (let i=0; i<this.state.subjects.length; i++) {
             articleItems.push(
-                <div key={this.state.subjects[i].title} style={this.styles.itemCardContainer} onClick={(e) => this.clickedLink(this.state.subjects[i].id)}>
+                <div key={this.state.subjects[i].title} style={this.styles.itemCardContainer}>
                     <WellnessCardSubject subject={this.state.subjects[i]} onSubjectClicked={(subject: Subject) => {this.clickedLink(subject.id)}}/>
                 </div>
             );
@@ -56,7 +57,7 @@ class Subjects extends React.Component<OurSubjectProps, OurSubjectsState> {
 
     styles = {
         container: {flex: 1, backgroundColor: '#F7F7F7'},
-        introText: {fontWeight: 100, padding: 20},
+        introText: {fontWeight: 100, padding: 20, lineHeight: 1.5},
         articlesContainer: {width: isMobile ? '100%' : '75%', flexDirection: 'row' as 'row', display: 'flex', flexWrap: 'wrap' as 'wrap', marginLeft: 'auto', marginRight: 'auto'},
         itemCardContainer: {flexGrow: 1, padding: '10px', display: 'flex', flexDirection: 'column' as 'column', justifyContent: 'center' as 'center', alignItems: 'center' as 'center'},
         articleCard: { width: '300px', height: '500px',display: "flex", flexDirection: 'column' as 'column', backgroundColor: 'white' },

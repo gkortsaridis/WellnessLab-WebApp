@@ -63,7 +63,14 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
                     const subjectImg = Array()
                     subjectImg.push(subject.imgUrl)
 
-                    this.setState({subject: subject, articleImage: articleImg, subjectImage: subjectImg})
+                    const tipsImg = Array()
+                    subject.tips.forEach((value: string, index: number, array: string[]) =>{
+                        tipsImg.push(value)
+                    })
+
+
+
+                    this.setState({subject: subject, articleImage: articleImg, subjectImage: subjectImg, tipsImages: tipsImg})
                 })
                 .catch((error) => {
                     console.log(error)
@@ -241,27 +248,6 @@ class AdminPanelSubjectEditing extends React.Component<SubjectDetailsProps, Subj
                                         }}
                                     />
                                 </div>
-
-                                {
-                                    /*
-                                    * <div style={{marginLeft: 10, marginRight: 10}}>
-                                    <Typography use="subtitle1" style={this.styles.input}>Φωτογραφία Άρθρου</Typography>
-                                    <MultiImageInput
-                                        images={this.state.articleImage}
-                                        setImages={(images: any) => this.setState({articleImage: images})}
-                                        allowCrop={false}
-                                        max={1}
-                                        theme={{
-                                            background: '#ffffff',
-                                            outlineColor: '#111111',
-                                            textColor: 'rgba(255,255,255,0.6)',
-                                            buttonColor: '#ff0e1f',
-                                            modalColor: '#ffffff'
-                                        }}
-                                    />
-                                </div>
-                                    * */
-                                }
 
                                 <div style={{marginLeft: 10, marginRight: 10}}>
                                     <Typography use="subtitle1" style={this.styles.input}>TIPS</Typography>

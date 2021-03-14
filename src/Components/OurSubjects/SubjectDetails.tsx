@@ -12,6 +12,7 @@ import tips from '../../Images/tips_icon.png'
 import suggestions from '../../Images/suggestions_icon.png'
 import {Palette} from "react-palette";
 import SuggestionParentComponent from "../Admin/Suggestions/SuggestionParentComponent";
+import {wellnessLabPrimary} from "../../Entities/Colors";
 
 type SubjectDetailsProps = {
     history: any
@@ -70,7 +71,7 @@ class SubjectDetails extends React.Component<SubjectDetailsProps, SubjectDetails
                             <div style={{width: '100%', height: 400,  background: 'url('+this.state.subject.imgUrl+') center / cover', borderRadius: this.cardRadius}} />
                             <div style={this.styles.articleTextContainer}>
                                 <div>{this.state.subject.article.title}</div>
-                                <Button label={"ΔΙΑΒΑΣΕ ΤΟ"} onClick={() => {this.readArticle(this.state.subject.article.articleUrl)}}/>
+                                <Button label={"ΔΙΑΒΑΣΕ ΤΟ"} style={{color: wellnessLabPrimary}} onClick={() => {this.readArticle(this.state.subject.article.articleUrl)}}/>
                             </div>
                         </WellnessCard>
                     </div>
