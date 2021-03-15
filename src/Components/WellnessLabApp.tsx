@@ -1,6 +1,7 @@
 import * as React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/analytics';
+import 'firebase/auth';
 
 import {Router, Switch, Route } from "react-router-dom";
 
@@ -38,6 +39,8 @@ import AdminPanelSeminarEdit from "./Admin/Seminars/AdminPanelSeminarEdit";
 import AdminPanelHealthExperiencesList from "./Admin/HealthExperiences/AdminPanelHealthExperiencesList";
 import AdminPanelHealthExperienceEdit from "./Admin/HealthExperiences/AdminPanelHealthExperienceEdit";
 import {Dialog, DialogActions, DialogButton, DialogContent, DialogTitle} from "rmwc";
+import {FirebaseAuthConsumer, IfFirebaseAuthed, IfFirebaseAuthedAnd} from "@react-firebase/auth";
+import NotAuthed from "./Admin/NotAuthed";
 
 type WellnessLabAppState = {
     renderFlag: boolean,
@@ -46,7 +49,8 @@ type WellnessLabAppState = {
     alertMsg: string,
     yesBtn: string,
     noBtn: string,
-    action: (yes: boolean) => void
+    action: (yes: boolean) => void,
+    authUser: string
 }
 
 const firebaseConfigPROD = {
@@ -86,6 +90,7 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
             alertMsg: "",
             yesBtn: "",
             noBtn: "",
+            authUser: localStorage.getItem('authUser') || "",
             action: (yes: boolean) => {}
         }
 
@@ -102,6 +107,13 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
             firebase.analytics().logEvent("openedPage", {page: window.location.pathname})
             this.setState({ renderFlag: !this.state.renderFlag })
         })
+
+        firebase.auth().onAuthStateChanged(authUser => {
+            console.log("AUTH STATE CHANGED", authUser)
+            authUser
+                ? localStorage.setItem('authUser', JSON.stringify(authUser))
+                : localStorage.removeItem('authUser')
+        });
     }
 
     private isLocalhost(){
@@ -124,6 +136,11 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
             noBtn: noBtn,
             action: action
         })
+    }
+
+    private isAuthenticatedAndTrustedUser(): boolean {
+        const authUser = JSON.parse(localStorage.getItem("authUser") || "{}")
+        return authUser.email === "gkortsaridis@gmail.com" || authUser.email === "wellnesslab.psy@gmail.com" || authUser.email === "an.aivatoglou@gmail.com" || authUser.email === "grigoropoulou.chrys@gmail.com"
     }
 
     render() {
@@ -187,44 +204,45 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
                         </Route>
 
                         <Route exact path={ADMIN}>
-                            <AdminPanel history={this.appHistory}/>
+                            { this.isAuthenticatedAndTrustedUser() ? <AdminPanel history={this.appHistory}/> : <NotAuthed history={this.appHistory} /> }
                         </Route>
 
                         <Route exact path={ADMIN_SUBJECTS}>
-                            <AdminPanelSubjectsList history={this.appHistory}/>
+                            { this.isAuthenticatedAndTrustedUser() ? <AdminPanelSubjectsList history={this.appHistory}/> : <NotAuthed history={this.appHistory} /> }
                         </Route>
 
                         <Route exact path={ADMIN_SUGGESTIONS}>
-                            <AdminPanelSuggestionTypes history={this.appHistory}/>
+                            { this.isAuthenticatedAndTrustedUser() ? <AdminPanelSuggestionTypes history={this.appHistory}/> : <NotAuthed history={this.appHistory} /> }
                         </Route>
 
                         <Route exact path={ADMIN_SUGGESTION}>
-                            <AdminPanelSuggestionType history={this.appHistory} alert={this.showAlert}/>
+                            { this.isAuthenticatedAndTrustedUser() ? <AdminPanelSuggestionType history={this.appHistory} alert={this.showAlert}/> : <NotAuthed history={this.appHistory} /> }
+
                         </Route>
 
 
                         <Route exact path={ADMIN_SUBJECT_EDIT}>
-                            <AdminPanelSubjectEditing history={this.appHistory} alert={this.showAlert}/>
+                            { this.isAuthenticatedAndTrustedUser() ? <AdminPanelSubjectEditing history={this.appHistory} alert={this.showAlert}/> : <NotAuthed history={this.appHistory} /> }
                         </Route>
 
                         <Route exact path={ADMIN_SUBJECT_EDIT_SUGGESTIONS}>
-                            <AdminPanelSubjectEditingSuggestions history={this.appHistory}/>
+                            { this.isAuthenticatedAndTrustedUser() ? <AdminPanelSubjectEditingSuggestions history={this.appHistory}/> : <NotAuthed history={this.appHistory} /> }
                         </Route>
 
                         <Route exact path={ADMIN_SEMINARS}>
-                            <AdminPanelSeminarsList history={this.appHistory}/>
+                            { this.isAuthenticatedAndTrustedUser() ? <AdminPanelSeminarsList history={this.appHistory}/> : <NotAuthed history={this.appHistory} /> }
                         </Route>
 
                         <Route exact path={ADMIN_SEMINARS_EDIT}>
-                            <AdminPanelSeminarEdit history={this.appHistory} alert={this.showAlert}/>
+                            { this.isAuthenticatedAndTrustedUser() ? <AdminPanelSeminarEdit history={this.appHistory} alert={this.showAlert}/> : <NotAuthed history={this.appHistory} /> }
                         </Route>
 
                         <Route exact path={ADMIN_HEALTH_EXPERIENCES}>
-                            <AdminPanelHealthExperiencesList history={this.appHistory}/>
+                            { this.isAuthenticatedAndTrustedUser() ? <AdminPanelHealthExperiencesList history={this.appHistory}/> : <NotAuthed history={this.appHistory} /> }
                         </Route>
 
                         <Route exact path={ADMIN_HEALTH_EXPERIENCES_EDIT}>
-                            <AdminPanelHealthExperienceEdit history={this.appHistory} alert={this.showAlert}/>
+                            { this.isAuthenticatedAndTrustedUser() ? <AdminPanelHealthExperienceEdit history={this.appHistory} alert={this.showAlert}/> : <NotAuthed history={this.appHistory} /> }
                         </Route>
 
                         <Route path="*">
