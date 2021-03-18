@@ -84,7 +84,7 @@ class Home extends React.Component<HomeProps, HomeState> {
                         <div style={this.styles.topText} >{staticText.welcomeText}</div>
                     </div>
                     <div style={this.styles.findUsContainer}>
-                        <Typography use="headline5" style={{fontWeight: 100, marginLeft: 10}}>Βρείτε μας εδώ</Typography>
+                        <Typography use="headline5" style={{fontWeight: 100, marginLeft: 10}}>Βρείτε μας εδώ.</Typography>
                         <div style={this.styles.socialMediaContainer}>{this.socialItems}</div>
                     </div>
                 </div>
