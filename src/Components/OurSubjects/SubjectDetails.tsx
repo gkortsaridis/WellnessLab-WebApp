@@ -60,10 +60,14 @@ class SubjectDetails extends React.Component<SubjectDetailsProps, SubjectDetails
     render() {
         return (
             <div style={this.styles.container}>
-                <div style={this.styles.smallToolbar}>
-                    <img alt={"back_button"} style={this.styles.backBtn} src={back} onClick={this.goBack}/>
-                    <div style={this.styles.backTxt}>{this.state.subject.title}</div>
-                </div>
+                {
+                    /*
+                    <div style={this.styles.smallToolbar}>
+                        <img alt={"back_button"} style={this.styles.backBtn} src={back} onClick={this.goBack}/>
+                        <div style={this.styles.backTxt}>{this.state.subject.title}</div>
+                    </div>
+                    */
+                }
                 <div style={isMobile ? this.styles.dataContainerMobile : this.styles.dataContainer}>
                     <div style={isMobile ? this.styles.articleDivMobile : this.styles.articleDiv}>
                         <div style={this.styles.title}>Άρθρο</div>
@@ -143,7 +147,7 @@ class SubjectDetails extends React.Component<SubjectDetailsProps, SubjectDetails
         smallToolbar: {display: 'flex', flexDirection: 'row' as 'row', alignItems: 'center' as 'center', padding: 15, backgroundColor: '#F7F7F7'},
         backBtn: {width: 25, height: 25, marginRight: 10},
         backTxt: {fontSize: 20},
-        dataContainer: {display: 'flex', flexDirection: 'row' as 'row', flexGrow: 1, backgroundColor: '#F7F7F7'},
+        dataContainer: {display: 'flex', flexDirection: 'row' as 'row', flexGrow: 1, backgroundColor: '#F7F7F7', paddingTop: 20},
         dataContainerMobile: {display: 'flex', flexDirection: 'column' as 'column', flexGrow: 1, backgroundColor: '#F7F7F7'},
         articleDiv: {display: 'flex', width: '33%', flexGrow: 1, flexDirection: 'column' as 'column', alignItems: 'center'},
         articleDivMobile: {display: 'flex', width: '100%', flexGrow: 1, flexDirection: 'column' as 'column', alignItems: 'center'},
