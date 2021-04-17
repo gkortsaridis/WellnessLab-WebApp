@@ -10,6 +10,7 @@ import Instagram from "../../Images/instagram.png";
 import LinkedIn from "../../Images/linkedin.png";
 import Email from "../../Images/email.png";
 import cover from '../../Images/front_cover.png'
+import youtube from '../../Images/youtube.png';
 
 import WellnessCard from "../CustomUIComponents/WellnessCard/WellnessCard";
 import {SUBJECTS} from "../../Entities/AppRoutes";
@@ -57,7 +58,9 @@ class Home extends React.Component<HomeProps, HomeState> {
                                         ? Instagram
                                         : socialMedia[i].name === "LinkedIn"
                                             ? LinkedIn
-                                            : Email
+                                            : socialMedia[i].name === "Youtube"
+                                                ? youtube
+                                                : Email
                             }/>
                             <div style={this.styles.socialMediaTxt}>{socialMedia[i].name}</div>
                         </div>

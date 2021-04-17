@@ -9,7 +9,10 @@
       "name": "LinkedIn",
       "url": "https://www.linkedin.com/company/wellnesslab-psy/"
   }, {
-      "name": "Email",
-      "url": "mailto:wellnesslab@gmail.com"
+    "name": "Youtube",
+    "url": "https://www.youtube.com/channel/UCheclL64EqHfkRmi3N3WQSg"
+  }, {
+    "name": "Email",
+    "url": "mailto:wellnesslab@gmail.com"
   }
 ]
