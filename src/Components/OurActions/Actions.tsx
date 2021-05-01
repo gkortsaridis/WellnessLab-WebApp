@@ -51,7 +51,7 @@ class Actions extends React.Component<ActionsProps, {}> {
                     <div style={isMobile ? this.styles.tipsDivMobile : this.styles.tipsDiv}>
                         <WellnessCard width={'80%'} height={500} borderRadius={this.cardRadius} disableMove onCardClick={this.goToTalks}>
                             <div style={{width: '100%', height: '100%',  background: 'url('+seminars+') center / cover', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }}>
-                                <div style={this.styles.title}>{"Σεμιναρια"}</div>
+                                <div style={this.styles.title}>{"Σεμινάρια"}</div>
                             </div>
                         </WellnessCard>
                     </div>

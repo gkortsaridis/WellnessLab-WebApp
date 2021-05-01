@@ -3,7 +3,7 @@ import 'firebase/firestore'; // If using Firebase database
 
 import { Seminar } from "../Entities/Entities";
 
-export const emptySeminar: Seminar = {title: "UNKNOWN", img: "", description: "", id: "-1"}
+export const emptySeminar: Seminar = {title: "UNKNOWN", img: "", description: "", id: "-1", modifiedDate: Date.now()}
 export let allSeminars: Seminar[] = []
 
 let DB_NAME = "seminars"
@@ -21,17 +21,20 @@ export function getAllSeminars() {
                     const title = doc.data().title
                     const img = doc.data().img
                     const desc = doc.data().description
+                    const modifiedDate = doc.data().modifiedDate
 
                     seminarObj.title = title
                     seminarObj.img = img
                     seminarObj.description = desc
                     seminarObj.id = doc.id
+                    seminarObj.modifiedDate = modifiedDate
 
                     seminarsArr.push(seminarObj)
 
                     if(cnt === snapshot.docs.length - 1) {
+                        seminarsArr.sort((a: Seminar,b: Seminar)=> a.modifiedDate < b.modifiedDate ? 1 : -1)
                         allSeminars = seminarsArr
-                        console.log("CACHING SEMINAR")
+                        console.log("CACHING SEMINARS")
                         resolve(seminarsArr)
                     }
                 }
@@ -66,7 +69,8 @@ export function updateSeminar(seminar: Seminar) {
         firebase.firestore().collection(DB_NAME).doc(seminar.id).set({
             title: seminar.title,
             img: seminar.img,
-            description: seminar.description
+            description: seminar.description,
+            modifiedDate: Date.now()
         })
             .then((result) => {
                 allSeminars = []
@@ -81,7 +85,8 @@ export function createSeminar(seminar: Seminar) {
         firebase.firestore().collection(DB_NAME).add({
             title: seminar.title,
             img: seminar.img,
-            description: seminar.description
+            description: seminar.description,
+            modifiedDate: Date.now()
         })
             .then((result) => {
                 allSeminars = []

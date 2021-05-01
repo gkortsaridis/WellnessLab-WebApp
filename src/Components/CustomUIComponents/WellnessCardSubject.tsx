@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Subject} from "../../Entities/Entities";
 import WellnessCard from "./WellnessCard/WellnessCard";
+import {isMobile} from "react-device-detect";
 
 type WellnessCardSubjectProps = {
     subject: Subject,
@@ -15,7 +16,7 @@ class WellnessCardSubject extends React.Component<WellnessCardSubjectProps, {}> 
 
     render() {
         return (
-            <WellnessCard width={300} height={500} borderRadius={this.cardRadius} onCardClick={() => {this.props.onSubjectClicked(this.props.subject)}}>
+            <WellnessCard width={300} height={500} borderRadius={this.cardRadius} onCardClick={() => {this.props.onSubjectClicked(this.props.subject)}} disableMove={isMobile}>
                 <div style={this.styles.articleCard}>
                     <div style={Object.assign({background: 'url('+this.props.subject.imgUrl+') center / cover'}, this.styles.articleImage)}></div>
                     <div style={this.styles.articleTitleTextContainer}>

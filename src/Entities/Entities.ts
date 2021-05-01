@@ -6,4 +6,4 @@ export interface SuggestionType { name: string, img: string, id: string }
 export interface SuggestionParent {suggestionType: SuggestionType, suggestionsText: string[]}
 export interface SubjectSuggestion { mainText: string, suggestions: SuggestionParent[]}
 export interface HealthExperience { title: string, img: string, description: string, id: string, createdDate: number, modifiedDate: number}
-export interface Seminar { title: string, img: string, description: string, id: string}
+export interface Seminar { title: string, img: string, description: string, id: string, modifiedDate: number}

@@ -53,6 +53,8 @@ type WellnessLabAppState = {
     authUser: string
 }
 
+const useProdDB = true
+
 const firebaseConfigPROD = {
     apiKey: "AIzaSyDY9zLRl7EOpKR02SWCGpwW2jkrh-YU2uY",
     authDomain: "wellness-lab.firebaseapp.com",
@@ -117,7 +119,7 @@ class WellnessLabApp extends React.Component<{}, WellnessLabAppState> {
     }
 
     private isLocalhost(){
-        return window.location.hostname === "localhost" || window.location.hostname === "0.0.0.0" || window.location.hostname === "127.0.0.0"
+        return (window.location.hostname === "localhost" || window.location.hostname === "0.0.0.0" || window.location.hostname === "127.0.0.0") && !useProdDB
     }
 
     private onPageSelected(page: string) {

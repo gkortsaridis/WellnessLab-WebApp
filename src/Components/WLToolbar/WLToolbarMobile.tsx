@@ -44,7 +44,7 @@ class WLToolbarMobile extends React.Component<WLToolbarProps, WLToolbarMobileSta
                     <p style={this.stylesMobile.logoText}>WellnessLab</p>
 
                     <div style={this.stylesMobile.menu}>
-                        <SimpleMenu onSelect={evt => this.onMenuItemClicked(evt.detail.index)} handle={<img style={{width: 30, height: 30}} src={menu}/>} anchorCorner={'bottomLeft'}>
+                        <SimpleMenu onSelect={evt => this.onMenuItemClicked(evt.detail.index)} handle={<img style={{width: 25, height: 25}} src={menu}/>} anchorCorner={'bottomLeft'}>
                             <MenuItem>Αρχική</MenuItem>
                             <MenuItem>Θέματα</MenuItem>
                             <MenuItem>Δράσεις</MenuItem>
@@ -70,8 +70,8 @@ class WLToolbarMobile extends React.Component<WLToolbarProps, WLToolbarMobileSta
             height: 60
         },
         logo: {
-            width: 30,
-            height: 30,
+            width: 50,
+            height: 50,
             margin: 10
         },
         logoText: {
