@@ -1,14 +1,14 @@
-export const HOME = "/dev/"
-export const SUBJECTS = "/dev/subjects"
-export const SUBJECT_DETAILS = "/dev/subjects/:subjectID"
+export const HOME = "/"
+export const SUBJECTS = "/subjects"
+export const SUBJECT_DETAILS = "/subjects/:subjectID"
 
-export const ACTIONS = "/dev/actions"
-export const HEALTH_EXPERIENCES = "/dev/actions/health_experiences"
-export const SEMINARS = "/dev/actions/seminars"
-export const TV_INTERVIEW = "/dev/actions/tv_interview"
+export const ACTIONS = "/actions"
+export const HEALTH_EXPERIENCES = "/actions/health_experiences"
+export const SEMINARS = "/actions/seminars"
+export const TV_INTERVIEW = "/actions/tv_interview"
 
-export const VIDEOS = "/dev/videos"
-export const TEAM = "/dev/team"
+export const VIDEOS = "/videos"
+export const TEAM = "/team"
 
 export const ADMIN = "/adminpanel"
 export const ADMIN_SUGGESTIONS = "/adminpanel/suggestion_types"
